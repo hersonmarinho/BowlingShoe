@@ -28,7 +28,7 @@
 	</Informacoes>
 	<Entidades>
     <Entidade nome="Pessoa" id="1">
-      <Left Valor="39"/>
+      <Left Valor="52"/>
       <Top Valor="69"/>
       <Width Valor="102"/>
       <Height Valor="66"/>
@@ -76,8 +76,8 @@
       <Especializacoes ehEsp="0"/>
     </Entidade>
     <Entidade nome="Item" id="5">
-      <Left Valor="674"/>
-      <Top Valor="278"/>
+      <Left Valor="826"/>
+      <Top Valor="332"/>
       <Width Valor="102"/>
       <Height Valor="66"/>
       <Fonte default="-1"/>
@@ -91,8 +91,8 @@
       <AutoRelacoes AutoRelacionado="0"/>
       <Especializacoes ehEsp="-1">
         <Especializacao nome="Esp_1" id="28">
-          <Left Valor="695"/>
-          <Top Valor="411"/>
+          <Left Valor="854"/>
+          <Top Valor="427"/>
           <Width Valor="50"/>
           <Height Valor="31"/>
           <Fonte default="0">
@@ -133,8 +133,8 @@
       </Especializacoes>
     </Entidade>
     <Entidade nome="Devolução" id="18">
-      <Left Valor="823"/>
-      <Top Valor="63"/>
+      <Left Valor="826"/>
+      <Top Valor="69"/>
       <Width Valor="102"/>
       <Height Valor="66"/>
       <Fonte default="-1"/>
@@ -149,8 +149,8 @@
       <Especializacoes ehEsp="0"/>
     </Entidade>
     <Entidade nome="Luvas" id="30">
-      <Left Valor="512"/>
-      <Top Valor="525"/>
+      <Left Valor="720"/>
+      <Top Valor="477"/>
       <Width Valor="102"/>
       <Height Valor="66"/>
       <Fonte default="-1"/>
@@ -165,8 +165,8 @@
       <Especializacoes ehEsp="0"/>
     </Entidade>
     <Entidade nome="Sapatos" id="31">
-      <Left Valor="837"/>
-      <Top Valor="524"/>
+      <Left Valor="932"/>
+      <Top Valor="477"/>
       <Width Valor="102"/>
       <Height Valor="66"/>
       <Fonte default="-1"/>
@@ -183,7 +183,7 @@
   </Entidades>
 	<Relacoes>
     <Relacao nome="É" id="9">
-      <Left Valor="216"/>
+      <Left Valor="220"/>
       <Top Valor="77"/>
       <Width Valor="102"/>
       <Height Valor="51"/>
@@ -201,7 +201,7 @@
           <MostraCardinalidade Valor="-1" Card_id="10"/>
           <Cardinalidades Cardinalidade="1">
             <Cardinalidade nome="" id="10">
-              <Left Valor="141"/>
+              <Left Valor="154"/>
               <Top Valor="87"/>
               <Width Valor="40"/>
               <Height Valor="20"/>
@@ -256,8 +256,8 @@
       </Ligacoes>
     </Relacao>
     <Relacao nome="FAZ" id="12">
-      <Left Valor="378"/>
-      <Top Valor="196"/>
+      <Left Valor="379"/>
+      <Top Valor="197"/>
       <Width Valor="102"/>
       <Height Valor="51"/>
       <Fonte default="-1"/>
@@ -329,8 +329,8 @@
       </Ligacoes>
     </Relacao>
     <Relacao nome="FAZ" id="19">
-      <Left Valor="600"/>
-      <Top Valor="72"/>
+      <Left Valor="605"/>
+      <Top Valor="77"/>
       <Width Valor="102"/>
       <Height Valor="51"/>
       <Fonte default="-1"/>
@@ -375,8 +375,8 @@
           <MostraCardinalidade Valor="-1" Card_id="21"/>
           <Cardinalidades Cardinalidade="1">
             <Cardinalidade nome="" id="21">
-              <Left Valor="785"/>
-              <Top Valor="81"/>
+              <Left Valor="788"/>
+              <Top Valor="87"/>
               <Width Valor="40"/>
               <Height Valor="20"/>
               <Fonte default="-1"/>
@@ -402,8 +402,8 @@
       </Ligacoes>
     </Relacao>
     <Relacao nome="DE" id="22">
-      <Left Valor="522"/>
-      <Top Valor="251"/>
+      <Left Valor="597"/>
+      <Top Valor="340"/>
       <Width Valor="102"/>
       <Height Valor="51"/>
       <Fonte default="-1"/>
@@ -448,8 +448,8 @@
           <MostraCardinalidade Valor="-1" Card_id="24"/>
           <Cardinalidades Cardinalidade="3">
             <Cardinalidade nome="" id="24">
-              <Left Valor="636"/>
-              <Top Valor="296"/>
+              <Left Valor="788"/>
+              <Top Valor="350"/>
               <Width Valor="40"/>
               <Height Valor="20"/>
               <Fonte default="-1"/>
@@ -475,8 +475,8 @@
       </Ligacoes>
     </Relacao>
     <Relacao nome="DE" id="25">
-      <Left Valor="665"/>
-      <Top Valor="157"/>
+      <Left Valor="826"/>
+      <Top Valor="203"/>
       <Width Valor="102"/>
       <Height Valor="51"/>
       <Fonte default="-1"/>
@@ -493,8 +493,8 @@
           <MostraCardinalidade Valor="-1" Card_id="26"/>
           <Cardinalidades Cardinalidade="3">
             <Cardinalidade nome="" id="26">
-              <Left Valor="874"/>
-              <Top Valor="130"/>
+              <Left Valor="877"/>
+              <Top Valor="136"/>
               <Width Valor="40"/>
               <Height Valor="20"/>
               <Fonte default="-1"/>
@@ -521,8 +521,8 @@
           <MostraCardinalidade Valor="-1" Card_id="27"/>
           <Cardinalidades Cardinalidade="3">
             <Cardinalidade nome="" id="27">
-              <Left Valor="725"/>
-              <Top Valor="263"/>
+              <Left Valor="877"/>
+              <Top Valor="317"/>
               <Width Valor="40"/>
               <Height Valor="20"/>
               <Fonte default="-1"/>
