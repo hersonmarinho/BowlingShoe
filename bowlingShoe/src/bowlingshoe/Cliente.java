@@ -16,9 +16,9 @@ public class Cliente {
     private String cpf;
     private String rg;
     private String telefone;
-    private int idade;
+    private String idade;
     
-    public Cliente (String nome, String email, String cpf, String rg, String telefone, int idade){
+    public Cliente (String nome, String email, String cpf, String rg, String telefone, String idade){
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
@@ -100,14 +100,14 @@ public class Cliente {
     /**
      * @return the idade
      */
-    public int getIdade() {
+    public String getIdade() {
         return idade;
     }
 
     /**
      * @param idade the idade to set
      */
-    public void setIdade(int idade) {
+    public void setIdade(String idade) {
         this.idade = idade;
     }
     

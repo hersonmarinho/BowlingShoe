@@ -122,7 +122,7 @@ public class tela1 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        TelaCadastro cadastro = new TelaCadastro();
+        CadastroCliente cadastro = new CadastroCliente();
         cadastro.show();
     }//GEN-LAST:event_jButton1ActionPerformed
 
