@@ -6,6 +6,7 @@
 package bowlingshoe;
 
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author herson.nmarinho
@@ -44,29 +45,36 @@ public class CadastroCliente extends javax.swing.JFrame {
         cancelarCadastro = new javax.swing.JButton();
         idadeCliente = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Cadastro");
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("NOME COMPLETO*");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         nomeCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nomeClienteActionPerformed(evt);
             }
         });
+        getContentPane().add(nomeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 36, 400, -1));
 
         jLabel2.setText("IDADE*");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 11, -1, -1));
 
         jLabel3.setText("E-MAIL");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 74, -1, -1));
 
         emailCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emailClienteActionPerformed(evt);
             }
         });
+        getContentPane().add(emailCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 106, 400, -1));
 
         jLabel4.setText("CPF*");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 144, -1, -1));
 
         try {
             cpfCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -79,14 +87,17 @@ public class CadastroCliente extends javax.swing.JFrame {
                 cpfClienteActionPerformed(evt);
             }
         });
+        getContentPane().add(cpfCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 176, 170, -1));
 
         try {
             rgCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-A")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        getContentPane().add(rgCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 176, 140, -1));
 
         jLabel5.setText("RG*");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 144, -1, -1));
 
         salvarCadastro.setText("SALVAR");
         salvarCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -94,16 +105,20 @@ public class CadastroCliente extends javax.swing.JFrame {
                 salvarCadastroActionPerformed(evt);
             }
         });
+        getContentPane().add(salvarCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 246, -1, -1));
 
         jLabel6.setText("*Informações obrigatórias");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 214, -1, -1));
 
         jLabel7.setText("TELEFONE");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(416, 74, -1, -1));
 
         try {
             telefoneCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        getContentPane().add(telefoneCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(416, 106, 130, -1));
 
         cancelarCadastro.setText("CANCELAR");
         cancelarCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -111,175 +126,99 @@ public class CadastroCliente extends javax.swing.JFrame {
                 cancelarCadastroActionPerformed(evt);
             }
         });
+        getContentPane().add(cancelarCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 246, -1, -1));
 
         idadeCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idadeClienteActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(cpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(rgCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(239, 239, 239))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(emailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(telefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(nomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(idadeCliente)
-                                .addGap(107, 107, 107))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(129, 129, 129))))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancelarCadastro)
-                .addGap(62, 62, 62)
-                .addComponent(salvarCadastro)
-                .addGap(215, 215, 215))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(nomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(idadeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(telefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rgCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(salvarCadastro)
-                    .addComponent(cancelarCadastro))
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
+        getContentPane().add(idadeCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 36, 59, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void nomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeClienteActionPerformed
-        
+
     }//GEN-LAST:event_nomeClienteActionPerformed
 
     private void cpfClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfClienteActionPerformed
-        
+
     }//GEN-LAST:event_cpfClienteActionPerformed
 
     private void salvarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarCadastroActionPerformed
         String cpf = cpfCliente.getText();
-        int digitosCPF = cpf.length();
-        int someCPF, divisaoCPF, segundaSomaCPF, segundaDivisaoCPF;
-        int a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11;
-        int b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11;
-        int c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11;
+        String nome = nomeCliente.getText();
+        String email = emailCliente.getText();
+        String rg = rgCliente.getText();
+        String telefone = telefoneCliente.getText();
+        String idade = idadeCliente.getText();
         
-        if (digitosCPF==14){
-            a1 = Character.getNumericValue(cpf.charAt(0));
-            a2 = Character.getNumericValue(cpf.charAt(1));
-            a3 = Character.getNumericValue(cpf.charAt(2));
-            a4 = Character.getNumericValue(cpf.charAt(4));
-            a5 = Character.getNumericValue(cpf.charAt(5));
-            a6 = Character.getNumericValue(cpf.charAt(6));
-            a7 = Character.getNumericValue(cpf.charAt(8));
-            a8 = Character.getNumericValue(cpf.charAt(9));
-            a9 = Character.getNumericValue(cpf.charAt(10));
-            a10 = Character.getNumericValue(cpf.charAt(12));
-            a11 = Character.getNumericValue(cpf.charAt(13));
-            
-            b1 = a1 * 1;
-            b2 = a2 * 2; 
-            b3 = a3 * 3;
-            b4 = a4 * 4;
-            b5 = a5 * 5;
-            b6 = a6 * 6;
-            b7 = a7 * 7;
-            b8 = a8 * 8;
-            b9 = a9 * 9;
-            
-            someCPF = b1 + b2 + b3 + b4 + b5 + b6 + b7 + b8 + b9;
-            divisaoCPF = someCPF % 11;
-            if (divisaoCPF==10){ 
-                divisaoCPF=0;
+        if (nome.equals("") || idade.equals("") || cpf.equals("") || rg.equals("")) {
+            JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos.\n Digite novamente por favor!");
+        } else {
+
+            int digitosCPF = cpf.length();
+            int someCPF, divisaoCPF, segundaSomaCPF, segundaDivisaoCPF;
+            int a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11;
+            int b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11;
+            int c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11;
+
+            if (digitosCPF == 14) {
+                a1 = Character.getNumericValue(cpf.charAt(0));
+                a2 = Character.getNumericValue(cpf.charAt(1));
+                a3 = Character.getNumericValue(cpf.charAt(2));
+                a4 = Character.getNumericValue(cpf.charAt(4));
+                a5 = Character.getNumericValue(cpf.charAt(5));
+                a6 = Character.getNumericValue(cpf.charAt(6));
+                a7 = Character.getNumericValue(cpf.charAt(8));
+                a8 = Character.getNumericValue(cpf.charAt(9));
+                a9 = Character.getNumericValue(cpf.charAt(10));
+                a10 = Character.getNumericValue(cpf.charAt(12));
+                a11 = Character.getNumericValue(cpf.charAt(13));
+
+                b1 = a1 * 1;
+                b2 = a2 * 2;
+                b3 = a3 * 3;
+                b4 = a4 * 4;
+                b5 = a5 * 5;
+                b6 = a6 * 6;
+                b7 = a7 * 7;
+                b8 = a8 * 8;
+                b9 = a9 * 9;
+
+                someCPF = b1 + b2 + b3 + b4 + b5 + b6 + b7 + b8 + b9;
+                divisaoCPF = someCPF % 11;
+                if (divisaoCPF == 10) {
+                    divisaoCPF = 0;
+                }
+
+                c1 = a1 * 9;
+                c2 = a2 * 8;
+                c3 = a3 * 7;
+                c4 = a4 * 6;
+                c5 = a5 * 5;
+                c6 = a6 * 4;
+                c7 = a7 * 3;
+                c8 = a8 * 2;
+                c9 = a9 * 1;
+
+                segundaSomaCPF = c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9;
+                segundaDivisaoCPF = segundaSomaCPF % 11;
+                if (segundaDivisaoCPF == 10) {
+                    segundaDivisaoCPF = 0;
+                }
+
+                if (divisaoCPF == a10 && segundaDivisaoCPF == a11) {
+                    Cliente cliente = new Cliente(nome, email, cpf, rg, telefone, idade);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos (CPF*).\n Digite novamente por favor!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos (CPF*).\n Digite novamente por favor!");
             }
-                
-            c1 = a1 * 9;
-            c2 = a2 * 8; 
-            c3 = a3 * 7;
-            c4 = a4 * 6;
-            c5 = a5 * 5;
-            c6 = a6 * 4;
-            c7 = a7 * 3;
-            c8 = a8 * 2;
-            c9 = a9 * 1;
-            
-            segundaSomaCPF = c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9;
-            segundaDivisaoCPF = segundaSomaCPF % 11;
-            if (segundaDivisaoCPF==10){ 
-                segundaDivisaoCPF=0;
-            }
-            
-            if (divisaoCPF==a10&&segundaDivisaoCPF==a11){
-                String nome = nomeCliente.getText();
-                String email = emailCliente.getText();
-                String rg = rgCliente.getText();
-                String telefone = telefoneCliente.getText();
-                String idade = idadeCliente.getText();
-        
-                Cliente cliente = new Cliente(nome,email,cpf,rg,telefone,idade);
-            }
-            else
-                JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos (CPF*)\n Digite novamente por favor!");
         }
-        else
-            JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos (CPF*)\n Digite novamente por favor!");
     }//GEN-LAST:event_salvarCadastroActionPerformed
 
     private void cancelarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarCadastroActionPerformed
@@ -297,7 +236,6 @@ public class CadastroCliente extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelarCadastro;

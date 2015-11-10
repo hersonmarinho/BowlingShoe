@@ -5,16 +5,14 @@
  */
 package bowlingshoe;
 
+
+
+
 /**
  *
  * @author herson.nmarinho
  */
 public class ClienteDAO {
-    
-    public ClienteDAO(){
-        
-    }
-    
     
     
     
