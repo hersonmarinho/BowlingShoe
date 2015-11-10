@@ -9,8 +9,11 @@ package bowlingshoe;
  *
  * @author herson.nmarinho
  */
-public class TelaCadastroDAO {
+public class ClienteDAO {
     
+    public ClienteDAO(){
+        
+    }
     
     
 }

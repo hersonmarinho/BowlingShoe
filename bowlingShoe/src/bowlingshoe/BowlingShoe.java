@@ -18,5 +18,4 @@ public class BowlingShoe {
         tela1 Menu = new tela1();
         Menu.show();
     }
-    
 }
