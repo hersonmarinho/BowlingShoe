@@ -37,7 +37,6 @@ public class tela1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btCadastro.setFont(new java.awt.Font("Futura Md BT", 0, 11)); // NOI18N
         btCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bowlingshoe/icons/Add_Cadastro.png"))); // NOI18N
@@ -47,8 +46,6 @@ public class tela1 extends javax.swing.JFrame {
                 btCadastroActionPerformed(evt);
             }
         });
-        getContentPane().add(btCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 161, -1));
-        btCadastro.getAccessibleContext().setAccessibleDescription("");
 
         btRetirada.setFont(new java.awt.Font("Futura Md BT", 0, 11)); // NOI18N
         btRetirada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bowlingshoe/icons/Retirada.png"))); // NOI18N
@@ -58,7 +55,6 @@ public class tela1 extends javax.swing.JFrame {
                 btRetiradaActionPerformed(evt);
             }
         });
-        getContentPane().add(btRetirada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 161, -1));
 
         btDevolucao.setFont(new java.awt.Font("Futura Md BT", 0, 11)); // NOI18N
         btDevolucao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bowlingshoe/icons/Devolução.png"))); // NOI18N
@@ -68,7 +64,6 @@ public class tela1 extends javax.swing.JFrame {
                 btDevolucaoActionPerformed(evt);
             }
         });
-        getContentPane().add(btDevolucao, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, -1));
 
         btRelatorio.setFont(new java.awt.Font("Futura Md BT", 0, 11)); // NOI18N
         btRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bowlingshoe/icons/Relatorio_Estoque.png"))); // NOI18N
@@ -78,7 +73,40 @@ public class tela1 extends javax.swing.JFrame {
                 btRelatorioActionPerformed(evt);
             }
         });
-        getContentPane().add(btRelatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 169, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                        .addGap(29, 29, 29)
+                        .addComponent(btRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                        .addGap(1, 1, 1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btRetirada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(29, 29, 29)
+                        .addComponent(btDevolucao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(96, 96, 96))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btRetirada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btDevolucao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(90, 90, 90))
+        );
+
+        btCadastro.getAccessibleContext().setAccessibleDescription("");
 
         pack();
         setLocationRelativeTo(null);

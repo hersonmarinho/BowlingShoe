@@ -35,9 +35,11 @@ public class TelaRetirada extends javax.swing.JFrame {
         btConfirmar = new javax.swing.JButton();
         btCancelar = new javax.swing.JToggleButton();
         cpfCliente = new javax.swing.JFormattedTextField();
-        jLabel1 = new javax.swing.JLabel();
+        Infos = new javax.swing.JLabel();
+        Funcionario = new javax.swing.JLabel();
+        IDFuncionario = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         ncliente.setText("Nome do Cliente*");
 
@@ -68,8 +70,21 @@ public class TelaRetirada extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        cpfCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpfClienteActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText("*Informações obrigatórias");
+        Infos.setText("*Informações obrigatórias");
+
+        Funcionario.setText("ID Funcionário*");
+
+        IDFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IDFuncionarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,48 +93,62 @@ public class TelaRetirada extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(ncliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(230, 230, 230))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(117, 117, 117)
+                                .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(41, 41, 41)
+                                .addComponent(btConfirmar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(Infos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(188, 188, 188)))
+                        .addGap(183, 183, 183))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nomeCliente)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dadoCliente)
-                                    .addComponent(cpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(ncliente))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(117, 117, 117)
-                                .addComponent(btCancelar)
-                                .addGap(41, 41, 41)
-                                .addComponent(btConfirmar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1)))
-                        .addGap(0, 183, Short.MAX_VALUE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(dadoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(95, 95, 95))
+                                    .addComponent(cpfCliente)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(Funcionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(45, 45, 45))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(IDFuncionario)
+                                        .addGap(70, 70, 70)))
+                                .addGap(377, 377, 377)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(ncliente)
+                .addComponent(ncliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nomeCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dadoCliente)
+                .addComponent(dadoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btConfirmar)
-                    .addComponent(btCancelar))
+                .addComponent(cpfCliente)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(Funcionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(IDFuncionario)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btConfirmar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(Infos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -137,8 +166,9 @@ public class TelaRetirada extends javax.swing.JFrame {
     private void btConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmarActionPerformed
         String nome = nomeCliente.getText();
         String cpf = cpfCliente.getText();
+        String idFuncionario = IDFuncionario.getText();
         
-        if (nome.equals("") || cpf.equals("")) {
+        if (nome.equals("") || cpf.trim().equals("") || idFuncionario.equals("")) {
             JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos.\n Digite novamente por favor!");
         } else {
 
@@ -206,17 +236,27 @@ public class TelaRetirada extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btConfirmarActionPerformed
 
+    private void cpfClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cpfClienteActionPerformed
+
+    private void IDFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDFuncionarioActionPerformed
+        
+    }//GEN-LAST:event_IDFuncionarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Funcionario;
+    private javax.swing.JTextField IDFuncionario;
+    private javax.swing.JLabel Infos;
     private javax.swing.JToggleButton btCancelar;
     private javax.swing.JButton btConfirmar;
     private javax.swing.JFormattedTextField cpfCliente;
     private javax.swing.JLabel dadoCliente;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel ncliente;
     private javax.swing.JTextField nomeCliente;
     // End of variables declaration//GEN-END:variables
