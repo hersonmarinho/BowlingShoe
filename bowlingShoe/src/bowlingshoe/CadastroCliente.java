@@ -105,7 +105,7 @@ public class CadastroCliente extends javax.swing.JFrame {
                 salvarCadastroActionPerformed(evt);
             }
         });
-        getContentPane().add(salvarCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 246, -1, -1));
+        getContentPane().add(salvarCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, -1, -1));
 
         jLabel6.setText("*Informações obrigatórias");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 214, -1, -1));
@@ -126,7 +126,7 @@ public class CadastroCliente extends javax.swing.JFrame {
                 cancelarCadastroActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelarCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 246, -1, -1));
+        getContentPane().add(cancelarCadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, -1, -1));
 
         idadeCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
