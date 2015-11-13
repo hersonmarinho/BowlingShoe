@@ -9,14 +9,15 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author marcos.vpvsantos
+ * @author hmarinho
  */
-public class TelaRetirada extends javax.swing.JFrame {
+public class Retirar extends javax.swing.JDialog {
 
     /**
-     * Creates new form telaAluga
+     * Creates new form TelaRetirar
      */
-    public TelaRetirada() {
+    public Retirar(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -29,34 +30,23 @@ public class TelaRetirada extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ncliente = new javax.swing.JLabel();
-        dadoCliente = new javax.swing.JLabel();
-        nomeCliente = new javax.swing.JTextField();
-        btConfirmar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
         btCancelar = new javax.swing.JToggleButton();
         cpfCliente = new javax.swing.JFormattedTextField();
         Infos = new javax.swing.JLabel();
         Funcionario = new javax.swing.JLabel();
-        IDFuncionario = new javax.swing.JTextField();
+        ncliente = new javax.swing.JLabel();
+        dadoCliente = new javax.swing.JLabel();
+        nomeCliente = new javax.swing.JTextField();
+        btConfirmar = new javax.swing.JButton();
+        idFuncionario = new javax.swing.JTextField();
+
+        jScrollPane1.setViewportView(jEditorPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-
-        ncliente.setText("Nome do Cliente*");
-
-        dadoCliente.setText("CPF*");
-
-        nomeCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomeClienteActionPerformed(evt);
-            }
-        });
-
-        btConfirmar.setText("AVANÇAR");
-        btConfirmar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btConfirmarActionPerformed(evt);
-            }
-        });
+        setTitle("Dados Cliente");
+        setResizable(false);
 
         btCancelar.setText("CANCELAR");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -80,9 +70,20 @@ public class TelaRetirada extends javax.swing.JFrame {
 
         Funcionario.setText("ID Funcionário*");
 
-        IDFuncionario.addActionListener(new java.awt.event.ActionListener() {
+        ncliente.setText("Nome do Cliente*");
+
+        dadoCliente.setText("CPF*");
+
+        nomeCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IDFuncionarioActionPerformed(evt);
+                nomeClienteActionPerformed(evt);
+            }
+        });
+
+        btConfirmar.setText("AVANÇAR");
+        btConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btConfirmarActionPerformed(evt);
             }
         });
 
@@ -91,63 +92,55 @@ public class TelaRetirada extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(ncliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(230, 230, 230))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(117, 117, 117)
-                                .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(41, 41, 41)
-                                .addComponent(btConfirmar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(Infos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(188, 188, 188)))
-                        .addGap(183, 183, 183))
+                        .addComponent(ncliente, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                        .addGap(413, 413, 413))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(Infos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(371, 371, 371))
+                    .addComponent(nomeCliente)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nomeCliente)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(dadoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(95, 95, 95))
-                                    .addComponent(cpfCliente)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Funcionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(45, 45, 45))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(IDFuncionario)
-                                        .addGap(70, 70, 70)))
-                                .addGap(377, 377, 377)))))
+                                .addComponent(dadoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(95, 95, 95))
+                            .addComponent(cpfCliente)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Funcionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(45, 45, 45)))
+                        .addGap(377, 377, 377))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(idFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(41, 41, 41)
+                        .addComponent(btConfirmar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(ncliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ncliente, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nomeCliente)
+                .addComponent(nomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dadoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(dadoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cpfCliente)
+                .addComponent(cpfCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(Funcionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Funcionario, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(IDFuncionario)
-                .addGap(20, 20, 20)
+                .addComponent(idFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btConfirmar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(Infos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
+                .addComponent(Infos, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -155,20 +148,36 @@ public class TelaRetirada extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        Object[] opcao = {"SIM", "NÃO"};
+
+        int n = JOptionPane.showOptionDialog(this, "Tem certeza que "
+                + "deseja cancelar a operação? ", "Selecione uma opção!", JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opcao, opcao[1]);
+        if (n == 0){
+            Retirar.this.setVisible(false);
+        }
+    
+    }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void cpfClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cpfClienteActionPerformed
+
     private void nomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nomeClienteActionPerformed
 
-    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-        TelaRetirada.this.setVisible(false);
-    }//GEN-LAST:event_btCancelarActionPerformed
-
     private void btConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmarActionPerformed
         String nome = nomeCliente.getText();
         String cpf = cpfCliente.getText();
-        String idFuncionario = IDFuncionario.getText();
-        
-        if (nome.equals("") || cpf.trim().equals("") || idFuncionario.equals("")) {
+        String idfuncionario = idFuncionario.getText();
+        if (idfuncionario.equals("")){
+            idfuncionario = "0";
+        }
+        int IDFuncionario = Integer.parseInt(idfuncionario);
+
+        if (nome.equals("") || cpf.trim().equals("") || IDFuncionario == 0) {
             JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos.\n Digite novamente por favor!");
         } else {
 
@@ -224,9 +233,11 @@ public class TelaRetirada extends javax.swing.JFrame {
                 }
 
                 if (divisaoCPF == a10 && segundaDivisaoCPF == a11) {
-                    ItensRetirar tela = new ItensRetirar();
-                    tela.show();
-                    this.dispose();
+                    ItensRetirar itens = new ItensRetirar (this, true);
+                    itens.setVisible(true);
+                    
+                    
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos (CPF*).\n Digite novamente por favor!");
                 }
@@ -236,14 +247,6 @@ public class TelaRetirada extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btConfirmarActionPerformed
 
-    private void cpfClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cpfClienteActionPerformed
-
-    private void IDFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDFuncionarioActionPerformed
-        
-    }//GEN-LAST:event_IDFuncionarioActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -251,12 +254,14 @@ public class TelaRetirada extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Funcionario;
-    private javax.swing.JTextField IDFuncionario;
     private javax.swing.JLabel Infos;
     private javax.swing.JToggleButton btCancelar;
     private javax.swing.JButton btConfirmar;
     private javax.swing.JFormattedTextField cpfCliente;
     private javax.swing.JLabel dadoCliente;
+    private javax.swing.JTextField idFuncionario;
+    private javax.swing.JEditorPane jEditorPane1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel ncliente;
     private javax.swing.JTextField nomeCliente;
     // End of variables declaration//GEN-END:variables

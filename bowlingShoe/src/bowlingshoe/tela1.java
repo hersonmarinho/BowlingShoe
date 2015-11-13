@@ -6,6 +6,7 @@
 package bowlingshoe;
 
 import javax.swing.ImageIcon;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -113,9 +114,9 @@ public class tela1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btRetiradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRetiradaActionPerformed
+        Retirar retirar = new Retirar (this, true);
+        retirar.setVisible(true);
         
-        TelaRetirada alugar = new TelaRetirada();
-        alugar.show();
         
     }//GEN-LAST:event_btRetiradaActionPerformed
 
@@ -124,9 +125,8 @@ public class tela1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btRelatorioActionPerformed
 
     private void btCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastroActionPerformed
-        // TODO add your handling code here:
-        CadastroCliente cadastro = new CadastroCliente();
-        cadastro.show();
+        CdCliente cliente = new CdCliente (this, true);
+        cliente.setVisible(true);
     }//GEN-LAST:event_btCadastroActionPerformed
 
     private void btDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDevolucaoActionPerformed
