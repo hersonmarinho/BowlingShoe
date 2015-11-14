@@ -6,6 +6,7 @@
 package bowlingshoe;
 
 import dbconexao.DBconexao;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,9 +21,12 @@ public class CdCliente extends javax.swing.JDialog {
     /**
      * Creates new form CdCliente
      */
+    private Connection con;
+    
     public CdCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
     }
 
     /**
@@ -294,21 +298,16 @@ public class CdCliente extends javax.swing.JDialog {
                 }
 
                 if (divisaoCPF == a10 && segundaDivisaoCPF == a11) {
-                    Cliente cliente = new Cliente(nome, email, cpf, rg, telefone, idade);
-                    ClienteDAO dao = new ClienteDAO();
-                    DBconexao conexao = new DBconexao();
+                    Cliente cliente = new Cliente(nome, email, cpf, rg, telefone, nasCliente);
+                    DBconexao con = new DBconexao();
+                    ClienteDAO dao = new ClienteDAO(con);
+                    
                     try {
-                        conexao.conecta();
-                        ResultSet rs = conexao.exec("SELECT * FROM CLIENTE");
-                        while(rs.next()){
-                            System.out.println(rs.getString("nome"));
-                        }
-                        JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!");
-                        conexao.desconecta();
+                        dao.InserirPessoa(cliente);
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, "Não foi possível conectar com o banco!");
                         Logger.getLogger(CdCliente.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos (CPF*).\n Digite novamente por favor!");

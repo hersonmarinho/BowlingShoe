@@ -35,7 +35,12 @@ public class DBconexao {
     public ResultSet exec(String sql) throws Exception {
         return resultset = statement.executeQuery(sql);
     }
-
+    
+    public PreparedStatement exect(String sql) throws Exception {
+        return prep = (PreparedStatement) prep.executeQuery(sql);
+    }
+    
+    
     public void desconecta() {
         boolean result = true;
         try {
@@ -48,4 +53,7 @@ public class DBconexao {
         }
 
     }
+
+
+    
 }
