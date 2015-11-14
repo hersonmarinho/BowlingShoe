@@ -6,6 +6,9 @@
 package bowlingshoe;
 
 import dbconexao.DBconexao;
+import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -230,7 +233,7 @@ public class CdCliente extends javax.swing.JDialog {
         String rg = rgCliente.getText();
         String telefone = telefoneCliente.getText();
         String idade = idadeCliente.getText();
-        if (idade.equals("")){
+        if (idade.equals("")) {
             idade = "0";
         }
         int nasCliente = Integer.parseInt(idade);
@@ -292,8 +295,20 @@ public class CdCliente extends javax.swing.JDialog {
 
                 if (divisaoCPF == a10 && segundaDivisaoCPF == a11) {
                     Cliente cliente = new Cliente(nome, email, cpf, rg, telefone, idade);
+                    ClienteDAO dao = new ClienteDAO();
                     DBconexao conexao = new DBconexao();
-                    
+                    try {
+                        conexao.conecta();
+                        ResultSet rs = conexao.exec("SELECT * FROM CLIENTE");
+                        while(rs.next()){
+                            System.out.println(rs.getString("nome"));
+                        }
+                        JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!");
+                        conexao.desconecta();
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Não foi possível conectar com o banco!");
+                        Logger.getLogger(CdCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos (CPF*).\n Digite novamente por favor!");
@@ -314,7 +329,7 @@ public class CdCliente extends javax.swing.JDialog {
         int n = JOptionPane.showOptionDialog(this, "Tem certeza que "
                 + "deseja cancelar a operação? ", "Selecione uma opção!", JOptionPane.YES_NO_CANCEL_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, opcao, opcao[1]);
-        if (n == 0){
+        if (n == 0) {
             CdCliente.this.setVisible(false);
         }
     }//GEN-LAST:event_cancelarCadastroActionPerformed

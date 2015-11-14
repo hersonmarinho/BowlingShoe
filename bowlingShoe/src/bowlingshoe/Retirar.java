@@ -87,6 +87,12 @@ public class Retirar extends javax.swing.JDialog {
             }
         });
 
+        idFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idFuncionarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -235,8 +241,7 @@ public class Retirar extends javax.swing.JDialog {
                 if (divisaoCPF == a10 && segundaDivisaoCPF == a11) {
                     ItensRetirar itens = new ItensRetirar (this, true);
                     itens.setVisible(true);
-                    
-                    
+                    this.setVisible(false);
                     
                 } else {
                     JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos (CPF*).\n Digite novamente por favor!");
@@ -246,6 +251,10 @@ public class Retirar extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_btConfirmarActionPerformed
+
+    private void idFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFuncionarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idFuncionarioActionPerformed
 
     /**
      * @param args the command line arguments

@@ -19,6 +19,8 @@ public class ItensRetirar extends javax.swing.JDialog {
     public ItensRetirar(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        
     }
 
     /**
@@ -44,7 +46,6 @@ public class ItensRetirar extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Itens Disponíveis");
-        setPreferredSize(new java.awt.Dimension(546, 323));
         setResizable(false);
 
         painelItens.setLayout(new java.awt.BorderLayout());
@@ -120,15 +121,15 @@ public class ItensRetirar extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(idFun)
+                        .addComponent(nomeFun))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(idFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(idFun)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(nomeFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(nomeFun))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nomeFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(guiaItens, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -143,7 +144,7 @@ public class ItensRetirar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void idFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFunActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_idFunActionPerformed
 
     private void btRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRetirarActionPerformed

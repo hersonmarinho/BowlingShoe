@@ -8,64 +8,44 @@ package dbconexao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.*;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author herson.nmarinho
  */
 public class DBconexao {
-    
-    public static String status = "Falha ao conectar.";
-    
-    public DBconexao() {
-    
+
+    private Connection conexao;
+    public Statement statement;
+    public ResultSet resultset;
+    public PreparedStatement prep;
+
+    public void conecta() throws Exception {
+        Class.forName("org.sqlite.JDBC");
+        conexao
+                = DriverManager.getConnection("jdbc:sqlite:/D:/Documents/GitHub/BowlingShoe/DB/bowlingShoe_db.db");
+        statement = conexao.createStatement();
+        conexao.setAutoCommit(false);
+        conexao.setAutoCommit(true);
+
     }
-    
-    public static java.sql.Connection getConexaoMySQL() { 
-        Connection connection = null;
-        
+
+    public ResultSet exec(String sql) throws Exception {
+        return resultset = statement.executeQuery(sql);
+    }
+
+    public void desconecta() {
+        boolean result = true;
         try {
-            String driverName = "com.mysql.jdbc.Driver";
-            Class.forName(driverName);
-            
-            String serverName = "localhost"; 
-            String mydatabase = "mysql";
-            String url = "jdbc:mysql://" + serverName + "/" + mydatabase; 
-            String username = "root";
-            String password = "123456";
-            
-            connection = DriverManager.getConnection(url, username, password);
-            
-            if (connection != null) { 
-                status = ("Conectado com sucesso."); 
-            } else { 
-                status = ("Não foi possivel realizar a conexão."); 
-            }
-            
-            return connection;
-        } catch (ClassNotFoundException e) {
-            System.out.println("O driver expecificado nao foi encontrado."); 
-            return null;
-        } catch (SQLException e) { 
-            System.out.println("Nao foi possivel conectar ao Banco de Dados."); 
-            return null; 
+            conexao.close();
+            JOptionPane.showMessageDialog(null, "banco fechado");
+        } catch (SQLException fecha) {
+            JOptionPane.showMessageDialog(null, "Não foi possivel "
+                    + "fechar o banco de dados: " + fecha);
+            result = false;
         }
-    }
-    
-    public static String statusConection() { 
-        return status; 
-    }
-    
-    public static boolean FecharConexao() { 
-        try { 
-            DBconexao.getConexaoMySQL().close(); 
-            return true; 
-        } catch (SQLException e) { 
-            return false; 
-        } 
-    }
-    
-    public static java.sql.Connection ReiniciarConexao() { 
-        FecharConexao(); 
-        return DBconexao.getConexaoMySQL(); 
+
     }
 }
