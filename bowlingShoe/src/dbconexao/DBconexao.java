@@ -6,54 +6,46 @@
 package dbconexao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
-/**
- *
- * @author herson.nmarinho
- */
+
 public class DBconexao {
-
-    private Connection conexao;
-    public Statement statement;
-    public ResultSet resultset;
-    public PreparedStatement prep;
-
-    public void conecta() throws Exception {
-        Class.forName("org.sqlite.JDBC");
-        conexao
-                = DriverManager.getConnection("jdbc:sqlite:/D:/Documents/GitHub/BowlingShoe/DB/bowlingShoe_db.db");
-        statement = conexao.createStatement();
-        conexao.setAutoCommit(false);
-        conexao.setAutoCommit(true);
-
-    }
-
-    public ResultSet exec(String sql) throws Exception {
-        return resultset = statement.executeQuery(sql);
+    private static final String banco = "jdbc:sqlite:/D:/Documents/GitHub/BowlingShoe/DB/bowlingShoe_db.db";
+    private static final String drive = "org.sqlite.JDBC";
+    public static Connection con = null;
+    
+    public DBconexao(){
+        
     }
     
-    public PreparedStatement exect(String sql) throws Exception {
-        return prep = (PreparedStatement) prep.executeQuery(sql);
-    }
-    
-    
-    public void desconecta() {
-        boolean result = true;
-        try {
-            conexao.close();
-            JOptionPane.showMessageDialog(null, "banco fechado");
-        } catch (SQLException fecha) {
-            JOptionPane.showMessageDialog(null, "Não foi possivel "
-                    + "fechar o banco de dados: " + fecha);
-            result = false;
+    public static Connection getDBconexao(){
+        if (con == null){
+            try {
+                Class.forName(drive);
+                con = DriverManager.getConnection(banco);
+            } catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "Driver do Banco não encontrado!" + ex.getMessage());
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Não foi possível conectar como banco" +ex.getMessage());
+            }
         }
-
+        return con;
     }
-
-
     
+    public static PreparedStatement getPreparedStatement(String sql){
+        if (con == null){
+            con = getDBconexao();
+        }
+        try {
+            return con.prepareStatement(sql);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro de SQL" + ex.getMessage());
+        }
+        return null;
+    }
 }

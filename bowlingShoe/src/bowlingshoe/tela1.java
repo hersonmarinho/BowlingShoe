@@ -130,7 +130,8 @@ public class tela1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btCadastroActionPerformed
 
     private void btDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDevolucaoActionPerformed
-        // TODO add your handling code here:
+        Devolucao devolver = new Devolucao (this, true);
+        devolver.setVisible(true);
     }//GEN-LAST:event_btDevolucaoActionPerformed
 
     /**

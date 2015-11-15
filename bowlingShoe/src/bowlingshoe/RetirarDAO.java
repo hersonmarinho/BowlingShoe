@@ -9,6 +9,6 @@ package bowlingshoe;
  *
  * @author herson.nmarinho
  */
-public class TelaDevolucaoDAO {
+public class RetirarDAO {
     
 }

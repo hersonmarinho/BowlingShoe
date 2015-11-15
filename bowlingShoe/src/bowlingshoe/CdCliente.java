@@ -22,11 +22,11 @@ public class CdCliente extends javax.swing.JDialog {
      * Creates new form CdCliente
      */
     private Connection con;
-    
+
     public CdCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
     }
 
     /**
@@ -299,16 +299,10 @@ public class CdCliente extends javax.swing.JDialog {
 
                 if (divisaoCPF == a10 && segundaDivisaoCPF == a11) {
                     Cliente cliente = new Cliente(nome, email, cpf, rg, telefone, nasCliente);
-                    DBconexao con = new DBconexao();
-                    ClienteDAO dao = new ClienteDAO(con);
-                    
-                    try {
-                        dao.InserirPessoa(cliente);
-                    } catch (Exception ex) {
-                        Logger.getLogger(CdCliente.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    
-
+                    ClienteDAO dao = new ClienteDAO();
+                    dao.inserirPessoa(cliente);
+                    dao.inserirCliente(cliente);
+                    this.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos (CPF*).\n Digite novamente por favor!");
                 }

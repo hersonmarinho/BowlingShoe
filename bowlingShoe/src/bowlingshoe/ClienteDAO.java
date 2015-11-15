@@ -6,48 +6,53 @@
 package bowlingshoe;
 
 import dbconexao.DBconexao;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author herson.nmarinho
- */
 public class ClienteDAO {
 
-    private DBconexao con;
-    
-    public ClienteDAO(DBconexao con){
-        this.con = con;
-    }
-
-    public void InserirPessoa(Cliente pessoa) throws Exception {
+    public boolean inserirPessoa(Cliente pessoa) {
+        String sql = "INSERT INTO PESSOA (NOME) VALUES (?)";
         try {
-            PreparedStatement ps = con.exect("INSERT INTO PESSOA (NOME) VALUES (?)");
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "DADOS SALVOS");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Não foi possível conectar com o banco");
-            
+            PreparedStatement p = DBconexao.getPreparedStatement(sql);
+            p.setString(1, pessoa.getNome());
+            if (p.executeUpdate() > 0) {
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Cadastro não realizado!");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
         }
-        
+        return false;
     }
-
-    public void InserirCliente(Cliente cliente) throws Exception {
-        DBconexao conexao = new DBconexao();
-        conexao.conecta();
-        PreparedStatement inserir = (PreparedStatement) conexao.exec("INSERT INTO CLIENTE (CPF,IDADE,TELEFONE,RG) VALUES (?,?,?,?)");
-        inserir.setString(1, cliente.getCpf());
-        inserir.setInt(2, cliente.getIdade());
-        inserir.setString(3, cliente.getTelefone());
-        inserir.setString(4, cliente.getRg());
-        inserir.executeUpdate();
-        inserir.close();
-        conexao.desconecta();
+    
+    public boolean inserirCliente(Cliente cliente) {
+        String sql = "INSERT INTO CLIENTE (IDADE, EMAIL, TELEFONE, CPF, RG) VALUES (?,?,?,?,?)";
+        try {
+            PreparedStatement p = DBconexao.getPreparedStatement(sql);
+            p.setInt(1, cliente.getIdade());
+            p.setString(2, cliente.getEmail());
+            p.setString(3, cliente.getTelefone());
+            p.setString(4, cliente.getCpf());
+            p.setString(5, cliente.getRg());
+            if (p.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "Clinte cadastrado com sucesso!");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Cadastro não realizado!");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
+        }
+        return false;
     }
+    
+    
+    
 
 }
