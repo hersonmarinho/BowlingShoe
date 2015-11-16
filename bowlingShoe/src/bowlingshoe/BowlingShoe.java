@@ -5,6 +5,8 @@
  */
 package bowlingshoe;
 
+import visual.tela1;
+
 /**
  *
  * @author herson.nmarinho

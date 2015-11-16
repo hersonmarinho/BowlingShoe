@@ -9,45 +9,38 @@ import dbconexao.DBconexao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ClienteDAO {
-
-    public boolean inserirPessoa(Cliente pessoa) {
-        String sql = "INSERT INTO PESSOA (NOME) VALUES (?)";
-        try {
-            PreparedStatement p = DBconexao.getPreparedStatement(sql);
-            p.setString(1, pessoa.getNome());
-            if (p.executeUpdate() > 0) {
-                return true;
-            } else {
-                JOptionPane.showMessageDialog(null, "Cadastro não realizado!");
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
-        }
-        return false;
-    }
     
     public boolean inserirCliente(Cliente cliente) {
-        String sql = "INSERT INTO CLIENTE (IDADE, EMAIL, TELEFONE, CPF, RG) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO CLIENTE (NOME, IDADE, EMAIL, TELEFONE, CPF, RG) VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement p = DBconexao.getPreparedStatement(sql);
-            p.setInt(1, cliente.getIdade());
-            p.setString(2, cliente.getEmail());
-            p.setString(3, cliente.getTelefone());
-            p.setString(4, cliente.getCpf());
-            p.setString(5, cliente.getRg());
+            p.setString(1, cliente.getNome());
+            p.setInt(2, cliente.getIdade());
+            p.setString(3, cliente.getEmail());
+            p.setString(4, cliente.getTelefone());
+            p.setString(5, cliente.getCpf());
+            p.setString(6, cliente.getRg());
             if (p.executeUpdate() > 0) {
-                JOptionPane.showMessageDialog(null, "Clinte cadastrado com sucesso!");
+                JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Cadastro não realizado!");
             }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
+        } catch (SQLException e){
+            String erro = e.getMessage();
+            if (erro.equalsIgnoreCase("[SQLITE_CONSTRAINT] Abort due to constraint violation (UNIQUE constraint failed:CLIENTE.CPF)")){
+                erro = "CPF JÁ CADASTRADO";
+                JOptionPane.showMessageDialog(null, "Erro de SQL: " + erro);
+            }
+            else
+                JOptionPane.showMessageDialog(null, "Erro de SQL: " + erro);
         }
         return false;
     }

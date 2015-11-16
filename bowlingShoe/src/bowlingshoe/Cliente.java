@@ -12,11 +12,12 @@ package bowlingshoe;
 public class Cliente {
     
     private String nome;
+    private int idade;
     private String email;
+    private String telefone;
     private String cpf;
     private String rg;
-    private String telefone;
-    private int idade;
+    
     
     public Cliente (String nome, String email, String cpf, String rg, String telefone, int idade){
         this.nome = nome;
@@ -85,6 +86,5 @@ public class Cliente {
     public void setIdade(int idade) {
         this.idade = idade;
     }
-    
     
 }
