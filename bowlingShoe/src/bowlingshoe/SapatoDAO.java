@@ -18,14 +18,14 @@ import javax.swing.JOptionPane;
  * @author herson.nmarinho
  */
 public class SapatoDAO {
-    
-    public List<Sapato> getListaD(){
+
+    public List<Sapato> getListaD() {
         String sql = "SELECT * FROM SAPATOS WHERE STATUS = 'D' ORDER BY NUMERO ASC";
         List<Sapato> lista = new ArrayList<>();
         try {
             PreparedStatement p = DBconexao.getPreparedStatement(sql);
             ResultSet rs = p.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 Sapato obj = new Sapato();
                 obj.setId(rs.getInt("ID_SAPATO"));
                 obj.setNome(rs.getString("NOME_PRODUTO"));
@@ -33,32 +33,38 @@ public class SapatoDAO {
                 obj.setStatus(rs.getString("STATUS"));
                 lista.add(obj);
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro de SQL" + e.getMessage());
         }
         return lista;
     }
-    
-    public List<Sapato> getListaR(){
-        String sql = "SELECT * FROM SAPATOS WHERE STATUS = 'R' ORDER BY NUMERO ASC";
+
+    public List<Sapato> getListaR() {
+        String sql = "SELECT M.ID_MOVIMENTACAO, M.ID_FUNCIONARIO, F.NOME, M.CPF, C.NOME, S.NOME_PRODUTO, S.NUMERO, M.STATUS \n"
+                + "    FROM MOVIMENTACAO M\n"
+                + "    INNER JOIN CLIENTE C ON M.CPF = C.CPF\n"
+                + "    INNER JOIN SAPATOS S ON M.ID_SAPATO = S.ID_SAPATO\n"
+                + "    INNER JOIN FUNCIONARIO F ON M.ID_FUNCIONARIO = F.ID_FUNCIONARIO\n"
+                + "WHERE M.CPF = '?"
+                + "ORDER BY S.NUMERO ASC;";
         List<Sapato> lista = new ArrayList<>();
         try {
             PreparedStatement p = DBconexao.getPreparedStatement(sql);
             ResultSet rs = p.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 Sapato obj = new Sapato();
-                obj.setId(rs.getInt("ID_SAPATO"));
-                obj.setNome(rs.getString("NOME_PRODUTO"));
+                obj.setId(rs.getInt("ID_MOVIMENTACAO"));
+                obj.setNome(rs.getString("ID_FUNCIONARIO"));
                 obj.setNumero(rs.getInt("NUMERO"));
                 obj.setStatus(rs.getString("STATUS"));
                 lista.add(obj);
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro de SQL" + e.getMessage());
         }
         return lista;
     }
-    
+
     public boolean inserirSapato(Sapato sapato) {
         String sql = "INSERT INTO SAPATOS (NOME_PRODUTO, NUMERO, STATUS) VALUES (?,?,?)";
         try {
@@ -77,7 +83,7 @@ public class SapatoDAO {
         }
         return false;
     }
-    
+
     public boolean alterarSapatoR(Sapato sapato) {
         String sql = "UPDATE SAPATOS SET STATUS = 'R' WHERE ID_SAPATO = ?";
         try {
@@ -94,7 +100,7 @@ public class SapatoDAO {
         }
         return false;
     }
-    
+
     public boolean alterarSapatoD(Sapato sapato) {
         String sql = "UPTADE SAPATOS SET STATUS = 'D' WHERE ID_SAPATO = ?";
         try {
@@ -111,29 +117,5 @@ public class SapatoDAO {
         }
         return false;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 }

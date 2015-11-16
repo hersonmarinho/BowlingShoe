@@ -5,6 +5,8 @@
  */
 package visual;
 
+import bowlingshoe.Movimentacao;
+import bowlingshoe.MovimentacaoDAO;
 import bowlingshoe.Sapato;
 import bowlingshoe.SapatoDAO;
 import java.util.ArrayList;
@@ -15,22 +17,22 @@ import javax.swing.JOptionPane;
  * @author Herson
  */
 public class DevolverSapato extends javax.swing.JDialog {
-    SapatoDAO dao = new SapatoDAO();
-    
-    public void atualizaTabela(){
+
+    MovimentacaoDAO dao = new MovimentacaoDAO();
+
+    public void atualizaTabela() {
         listObjetos.clear();
         listObjetos.addAll(dao.getListaR());
-        int linha = listObjetos.size() -1;
-        if (linha >= 0){
+        int linha = listObjetos.size() - 1;
+        if (linha >= 0) {
             tbItens.setRowSelectionInterval(linha, linha);
             tbItens.scrollRectToVisible(tbItens.getCellRect(linha, linha, true));
         }
     }
-    
+
     public DevolverSapato(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        atualizaTabela();
     }
 
     /**
@@ -43,12 +45,11 @@ public class DevolverSapato extends javax.swing.JDialog {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        listObjetos = org.jdesktop.observablecollections.ObservableCollections.observableList(new ArrayList<Sapato>());
+        listObjetos = org.jdesktop.observablecollections.ObservableCollections.observableList(new ArrayList<Movimentacao>());
         guiaItens = new javax.swing.JTabbedPane();
         painelItens = new javax.swing.JPanel();
         painelComItens = new javax.swing.JScrollPane();
         tbItens = new javax.swing.JTable();
-        scrollTab = new javax.swing.JScrollBar();
         btRetirar = new javax.swing.JButton();
         infos = new javax.swing.JLabel();
         dadoCliente = new javax.swing.JLabel();
@@ -58,6 +59,7 @@ public class DevolverSapato extends javax.swing.JDialog {
         idFun = new javax.swing.JTextField();
         btCancelar = new javax.swing.JButton();
         dataMov = new javax.swing.JFormattedTextField();
+        btValidar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -65,28 +67,26 @@ public class DevolverSapato extends javax.swing.JDialog {
         painelItens.setLayout(new java.awt.BorderLayout());
 
         org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, listObjetos, tbItens);
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
-        columnBinding.setColumnName("ID Sapato");
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${idFun}"));
+        columnBinding.setColumnName("Id Fun");
         columnBinding.setColumnClass(Integer.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
-        columnBinding.setColumnName("Nome");
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${idSap}"));
+        columnBinding.setColumnName("Id Sap");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${cpfCliente}"));
+        columnBinding.setColumnName("Cpf Cliente");
         columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${numero}"));
-        columnBinding.setColumnName("Numero");
-        columnBinding.setColumnClass(Integer.class);
-        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${data}"));
+        columnBinding.setColumnName("Data");
+        columnBinding.setColumnClass(String.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${status}"));
         columnBinding.setColumnName("Status");
         columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
         painelComItens.setViewportView(tbItens);
 
         painelItens.add(painelComItens, java.awt.BorderLayout.CENTER);
-        painelItens.add(scrollTab, java.awt.BorderLayout.LINE_END);
 
         guiaItens.addTab("Itens", painelItens);
 
@@ -138,6 +138,13 @@ public class DevolverSapato extends javax.swing.JDialog {
             ex.printStackTrace();
         }
 
+        btValidar.setText("VALIDAR DADOS");
+        btValidar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btValidarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,39 +169,38 @@ public class DevolverSapato extends javax.swing.JDialog {
                         .addComponent(dadoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(206, 206, 206)
+                .addGap(26, 26, 26)
+                .addComponent(dMov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dataMov, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(dMov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dataMov, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(infos)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(btValidar)
+                    .addComponent(infos))
+                .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(dataMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dadoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(cpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dMov)
+                    .addComponent(btValidar))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(dadoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cpfCliente)))
+                            .addComponent(idFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(idFun))
+                        .addGap(36, 36, 36))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(dMov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dataMov))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                    .addComponent(idFun)
-                    .addComponent(infos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(guiaItens, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                        .addGap(20, 20, 20)
+                        .addComponent(infos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(guiaItens, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -209,6 +215,30 @@ public class DevolverSapato extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRetirarActionPerformed
+
+
+    }//GEN-LAST:event_btRetirarActionPerformed
+
+    private void cpfClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cpfClienteActionPerformed
+
+    private void idFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFunActionPerformed
+
+    }//GEN-LAST:event_idFunActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        Object[] opcao = {"SIM", "NÃO"};
+
+        int n = JOptionPane.showOptionDialog(this, "Tem certeza que "
+                + "deseja cancelar a operação? ", "Selecione uma opção!", JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opcao, opcao[1]);
+        if (n == 0) {
+            DevolverSapato.this.setVisible(false);
+        }
+    }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void btValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btValidarActionPerformed
         String cpf = cpfCliente.getText();
         String data = dataMov.getText();
         String idfuncionario = idFun.getText();
@@ -273,24 +303,10 @@ public class DevolverSapato extends javax.swing.JDialog {
                 }
 
                 if (divisaoCPF == a10 && segundaDivisaoCPF == a11) {
-                    SapatoDAO dao = new SapatoDAO();
-                    int linha = tbItens.getSelectedRow();
-                    int coluna = tbItens.getSelectedColumn();
-                    Object id = tbItens.getValueAt(linha, coluna);
-                    int idItem = Integer.parseInt(id.toString());
+                    int idItem = 0;
+                    Movimentacao movimentacao = new Movimentacao(IDFuncionario, cpf, idItem, data, "DEVOLUÇÃO");
+                    atualizaTabela();
 
-                    int linha1 = tbItens.getSelectedRow();
-                    int coluna1 = tbItens.getSelectedColumn();
-                    //Object nome =
-
-                    Sapato sapato = new Sapato();
-
-                    if (coluna != 0) {
-                        JOptionPane.showMessageDialog(null, "Selecione o ID do item");
-                    } else {
-                        dao.alterarSapatoR(sapato);
-                        JOptionPane.showMessageDialog(null, "Item retirado com sucesso!");
-                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos (CPF*).\n Digite novamente por favor!");
                 }
@@ -298,36 +314,16 @@ public class DevolverSapato extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos (CPF*).\n Digite novamente por favor!");
             }
         }
-
-    }//GEN-LAST:event_btRetirarActionPerformed
-
-    private void cpfClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cpfClienteActionPerformed
-
-    private void idFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFunActionPerformed
-
-    }//GEN-LAST:event_idFunActionPerformed
-
-    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-        Object[] opcao = {"SIM", "NÃO"};
-
-        int n = JOptionPane.showOptionDialog(this, "Tem certeza que "
-            + "deseja cancelar a operação? ", "Selecione uma opção!", JOptionPane.YES_NO_CANCEL_OPTION,
-            JOptionPane.QUESTION_MESSAGE, null, opcao, opcao[1]);
-        if (n == 0) {
-            DevolverSapato.this.setVisible(false);
-        }
-    }//GEN-LAST:event_btCancelarActionPerformed
+    }//GEN-LAST:event_btValidarActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btRetirar;
+    private javax.swing.JButton btValidar;
     private javax.swing.JFormattedTextField cpfCliente;
     private javax.swing.JLabel dMov;
     private javax.swing.JLabel dadoCliente;
@@ -336,10 +332,9 @@ public class DevolverSapato extends javax.swing.JDialog {
     private javax.swing.JTextField idFun;
     private javax.swing.JLabel idFuncionario;
     private javax.swing.JLabel infos;
-    private java.util.List<Sapato> listObjetos;
+    private java.util.List<Movimentacao> listObjetos;
     private javax.swing.JScrollPane painelComItens;
     private javax.swing.JPanel painelItens;
-    private javax.swing.JScrollBar scrollTab;
     private javax.swing.JTable tbItens;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
