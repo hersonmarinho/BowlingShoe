@@ -32,6 +32,7 @@ public class Movimentacao {
         this.idSap = idSap;
         this.data = data;
         this.status = status;
+        
     }
 
     public int getIdFun() {

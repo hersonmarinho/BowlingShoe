@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class SapatoDAO {
 
-    public List<Sapato> getListaD() {
+    public List<Sapato> getListaDisponiveis() {
         String sql = "SELECT * FROM SAPATOS WHERE STATUS = 'D' ORDER BY NUMERO ASC";
         List<Sapato> lista = new ArrayList<>();
         try {

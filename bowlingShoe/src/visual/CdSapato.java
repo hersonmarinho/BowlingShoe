@@ -7,6 +7,9 @@ package visual;
 
 import bowlingshoe.Sapato;
 import bowlingshoe.SapatoDAO;
+import java.awt.event.ItemEvent;
+import javafx.event.EventType;
+import javafx.scene.control.CheckBoxTreeItem;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,13 +17,18 @@ import javax.swing.JOptionPane;
  * @author Herson
  */
 public class CdSapato extends javax.swing.JDialog {
-
-    /**
-     * Creates new form CdSapatos
-     */
+    
+    final CheckBoxTreeItem a = new CheckBoxTreeItem();
+    
+    
+    public void itemStateChanged(ItemEvent e) {
+        
+    }
+    
     public CdSapato(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
     }
 
     /**
@@ -37,10 +45,10 @@ public class CdSapato extends javax.swing.JDialog {
         numeroItem = new javax.swing.JLabel();
         numItem = new javax.swing.JFormattedTextField();
         statusItem = new javax.swing.JLabel();
-        sItem = new javax.swing.JTextField();
         btCancelar = new javax.swing.JButton();
         btIncluir = new javax.swing.JButton();
         infos = new javax.swing.JLabel();
+        checkDisponivel = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Cadastro de Itens");
@@ -66,13 +74,7 @@ public class CdSapato extends javax.swing.JDialog {
         });
 
         statusItem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        statusItem.setText("Status:*");
-
-        sItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sItemActionPerformed(evt);
-            }
-        });
+        statusItem.setText("Status:");
 
         btCancelar.setText("CANCELAR");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +92,16 @@ public class CdSapato extends javax.swing.JDialog {
 
         infos.setText("*Informações obrigatórias");
 
+        checkDisponivel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        checkDisponivel.setSelected(true);
+        checkDisponivel.setText("Disponível");
+        checkDisponivel.setEnabled(false);
+        checkDisponivel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkDisponivelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,13 +112,7 @@ public class CdSapato extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(nomeItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(447, 447, 447))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(statusItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(265, 265, 265))
                     .addComponent(numeroItem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(sItem)
-                        .addGap(489, 489, 489))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(numItem)
                         .addGap(488, 488, 488))
@@ -120,7 +126,10 @@ public class CdSapato extends javax.swing.JDialog {
                         .addComponent(btIncluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(23, 23, 23))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(infos)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(checkDisponivel)
+                            .addComponent(infos)
+                            .addComponent(statusItem, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -134,11 +143,11 @@ public class CdSapato extends javax.swing.JDialog {
                 .addComponent(numeroItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(numItem)
-                .addGap(36, 36, 36)
+                .addGap(34, 34, 34)
                 .addComponent(statusItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sItem)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(checkDisponivel)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btIncluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -155,16 +164,15 @@ public class CdSapato extends javax.swing.JDialog {
         int id = 0;
         String nome = nItem.getText();
         String tamanho = numItem.getText();
-        String status = sItem.getText();
         if (tamanho.equals("")) {
             tamanho = "0";
         }
         int tam = Integer.parseInt(tamanho);
 
-        if (nome.equals("") || tam == 0 || status.equals("")) {
+        if (nome.equals("") || tam == 0) {
             JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos.\n Digite novamente por favor!");
         } else {
-            Sapato sapato = new Sapato(id, nome, tam, status);
+            Sapato sapato = new Sapato(id, nome, tam, "D");
             SapatoDAO dao = new SapatoDAO();
             dao.inserirSapato(sapato);
             this.setVisible(false);
@@ -182,10 +190,6 @@ public class CdSapato extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_numItemActionPerformed
 
-    private void sItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sItemActionPerformed
-
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         Object[] opcao = {"SIM", "NÃO"};
 
@@ -197,6 +201,10 @@ public class CdSapato extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btCancelarActionPerformed
 
+    private void checkDisponivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkDisponivelActionPerformed
+        
+    }//GEN-LAST:event_checkDisponivelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -204,12 +212,12 @@ public class CdSapato extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btIncluir;
+    private javax.swing.JCheckBox checkDisponivel;
     private javax.swing.JLabel infos;
     private javax.swing.JTextField nItem;
     private javax.swing.JLabel nomeItem;
     private javax.swing.JFormattedTextField numItem;
     private javax.swing.JLabel numeroItem;
-    private javax.swing.JTextField sItem;
     private javax.swing.JLabel statusItem;
     // End of variables declaration//GEN-END:variables
 }

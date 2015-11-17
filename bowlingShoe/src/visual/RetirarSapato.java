@@ -22,7 +22,7 @@ public class RetirarSapato extends javax.swing.JDialog {
 
     public void atualizaTabela() {
         listObjetos.clear();
-        listObjetos.addAll(dao.getListaD());
+        listObjetos.addAll(dao.getListaDisponiveis());
         int linha = listObjetos.size() - 1;
         if (linha >= 0) {
             tbItens.setRowSelectionInterval(linha, linha);

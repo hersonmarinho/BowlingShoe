@@ -15,7 +15,7 @@ import java.sql.SQLException;
 
 
 public class DBconexao {
-    private static final String banco = "jdbc:sqlite:/D:/Documents/GitHub/BowlingShoe/DB/bowlingShoe_db.db";
+    private static final String banco = "jdbc:sqlite:/E:/Dados Herson Marinho/Documents/GitHub/BowlingShoe/DB/bowlingShoe_db.db";
     private static final String drive = "org.sqlite.JDBC";
     public static Connection con = null;
     

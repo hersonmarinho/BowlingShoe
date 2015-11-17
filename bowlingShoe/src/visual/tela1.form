@@ -28,12 +28,12 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btCadastro" pref="200" max="32767" attributes="0"/>
+                  <Component id="btCadastroCliente" pref="200" max="32767" attributes="0"/>
                   <Component id="btRetirada" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btRelatorio" pref="200" max="32767" attributes="0"/>
+                  <Component id="btCadastroSapato" pref="200" max="32767" attributes="0"/>
                   <Component id="btDevolucao" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
@@ -45,8 +45,8 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btCadastro" max="32767" attributes="0"/>
-                  <Component id="btRelatorio" max="32767" attributes="0"/>
+                  <Component id="btCadastroCliente" max="32767" attributes="0"/>
+                  <Component id="btCadastroSapato" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -59,7 +59,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btCadastro">
+    <Component class="javax.swing.JButton" name="btCadastroCliente">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Futura Md BT" size="11" style="0"/>
@@ -73,7 +73,7 @@
         <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
       </AccessibilityProperties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCadastroActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCadastroClienteActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btRetirada">
@@ -104,7 +104,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btDevolucaoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btRelatorio">
+    <Component class="javax.swing.JButton" name="btCadastroSapato">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Futura Md BT" size="11" style="0"/>
@@ -115,7 +115,7 @@
         <Property name="text" type="java.lang.String" value="INSERIR"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRelatorioActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCadastroSapatoActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

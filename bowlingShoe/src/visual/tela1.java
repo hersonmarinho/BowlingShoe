@@ -31,21 +31,21 @@ public class tela1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btCadastro = new javax.swing.JButton();
+        btCadastroCliente = new javax.swing.JButton();
         btRetirada = new javax.swing.JButton();
         btDevolucao = new javax.swing.JButton();
-        btRelatorio = new javax.swing.JButton();
+        btCadastroSapato = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
         setResizable(false);
 
-        btCadastro.setFont(new java.awt.Font("Futura Md BT", 0, 11)); // NOI18N
-        btCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bowlingshoe/icons/Add_Cadastro.png"))); // NOI18N
-        btCadastro.setText("CADASTRAR");
-        btCadastro.addActionListener(new java.awt.event.ActionListener() {
+        btCadastroCliente.setFont(new java.awt.Font("Futura Md BT", 0, 11)); // NOI18N
+        btCadastroCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bowlingshoe/icons/Add_Cadastro.png"))); // NOI18N
+        btCadastroCliente.setText("CADASTRAR");
+        btCadastroCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCadastroActionPerformed(evt);
+                btCadastroClienteActionPerformed(evt);
             }
         });
 
@@ -67,12 +67,12 @@ public class tela1 extends javax.swing.JFrame {
             }
         });
 
-        btRelatorio.setFont(new java.awt.Font("Futura Md BT", 0, 11)); // NOI18N
-        btRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bowlingshoe/icons/Add_Item.png"))); // NOI18N
-        btRelatorio.setText("INSERIR");
-        btRelatorio.addActionListener(new java.awt.event.ActionListener() {
+        btCadastroSapato.setFont(new java.awt.Font("Futura Md BT", 0, 11)); // NOI18N
+        btCadastroSapato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bowlingshoe/icons/Add_Item.png"))); // NOI18N
+        btCadastroSapato.setText("INSERIR");
+        btCadastroSapato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRelatorioActionPerformed(evt);
+                btCadastroSapatoActionPerformed(evt);
             }
         });
 
@@ -83,11 +83,11 @@ public class tela1 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(btCadastroCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(btRetirada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(btCadastroSapato, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(btDevolucao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(87, 87, 87))
         );
@@ -96,8 +96,8 @@ public class tela1 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btCadastroCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btCadastroSapato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btRetirada, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
@@ -105,7 +105,7 @@ public class tela1 extends javax.swing.JFrame {
                 .addGap(90, 90, 90))
         );
 
-        btCadastro.getAccessibleContext().setAccessibleDescription("");
+        btCadastroCliente.getAccessibleContext().setAccessibleDescription("");
 
         pack();
         setLocationRelativeTo(null);
@@ -118,19 +118,22 @@ public class tela1 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btRetiradaActionPerformed
 
-    private void btRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRelatorioActionPerformed
+    private void btCadastroSapatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastroSapatoActionPerformed
         CdSapato sapato = new CdSapato(this, true);
         sapato.setVisible(true);
-    }//GEN-LAST:event_btRelatorioActionPerformed
+        
+    }//GEN-LAST:event_btCadastroSapatoActionPerformed
 
-    private void btCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastroActionPerformed
+    private void btCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastroClienteActionPerformed
         CdCliente cliente = new CdCliente (this, true);
         cliente.setVisible(true);
-    }//GEN-LAST:event_btCadastroActionPerformed
+        
+    }//GEN-LAST:event_btCadastroClienteActionPerformed
 
     private void btDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDevolucaoActionPerformed
         DevolverSapato devolver = new DevolverSapato (this, true);
         devolver.setVisible(true);
+        
     }//GEN-LAST:event_btDevolucaoActionPerformed
 
     /**
@@ -139,9 +142,9 @@ public class tela1 extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btCadastro;
+    private javax.swing.JButton btCadastroCliente;
+    private javax.swing.JButton btCadastroSapato;
     private javax.swing.JButton btDevolucao;
-    private javax.swing.JButton btRelatorio;
     private javax.swing.JButton btRetirada;
     // End of variables declaration//GEN-END:variables
 }
