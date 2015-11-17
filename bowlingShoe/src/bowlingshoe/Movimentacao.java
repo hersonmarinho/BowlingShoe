@@ -17,6 +17,9 @@ public class Movimentacao {
     private int idSap;
     private String data;
     private String status;
+    private Cliente cliente;
+    private Sapato sapato;
+    
     
     public Movimentacao(){
         
@@ -69,5 +72,21 @@ public class Movimentacao {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Sapato getSapato() {
+        return sapato;
+    }
+
+    public void setSapato(Sapato sapato) {
+        this.sapato = sapato;
     }
 }

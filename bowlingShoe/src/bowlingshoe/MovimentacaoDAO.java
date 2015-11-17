@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  * @author Herson
  */
 public class MovimentacaoDAO {
-    
+
     public boolean inserirMovimentacao(Movimentacao movimentacao) {
         String sql = "INSERT INTO MOVIMENTACAO (ID_FUNCIONARIO, CPF, ID_SAPATO, DATA_MOV, STATUS) VALUES (?,?,?,?,?)";
         try {
@@ -39,36 +39,39 @@ public class MovimentacaoDAO {
         }
         return false;
     }
-    
-    
-    public List<Movimentacao> getListaR() {
-        String sql = "SELECT M.ID_MOVIMENTACAO, M.ID_FUNCIONARIO, F.NOME, M.CPF, C.NOME, S.NOME_PRODUTO, S.NUMERO, M.STATUS \n"
-                + "    FROM MOVIMENTACAO M\n"
-                + "    INNER JOIN CLIENTE C ON M.CPF = C.CPF\n"
-                + "    INNER JOIN SAPATOS S ON M.ID_SAPATO = S.ID_SAPATO\n"
-                + "    INNER JOIN FUNCIONARIO F ON M.ID_FUNCIONARIO = F.ID_FUNCIONARIO\n"
+
+    public List<Movimentacao> getListaR(Cliente cliente) {
+        String sql = "SELECT M.ID_MOVIMENTACAO, M.ID_FUNCIONARIO, C.NOME, M.CPF, S.NOME_PRODUTO, S.NUMERO, M.STATUS\n"
+                + "FROM MOVIMENTACAO M\n"
+                + "JOIN CLIENTE C ON M.CPF = C.CPF\n"
+                + "JOIN SAPATOS S ON M.ID_SAPATO = S.ID_SAPATO\n"
+                + "JOIN FUNCIONARIO F ON M.ID_FUNCIONARIO = F.ID_FUNCIONARIO\n"
                 + "WHERE M.CPF = ?";
         List<Movimentacao> lista = new ArrayList<>();
         try {
-            Movimentacao movimentacao = new Movimentacao();
+
             PreparedStatement p = DBconexao.getPreparedStatement(sql);
-            p.setString(1, movimentacao.getCpfCliente());
+            p.setString(1, cliente.getCpf());
             ResultSet rs = p.executeQuery();
             while (rs.next()) {
-                Movimentacao obj = new Movimentacao();
-                obj.setIdFun(rs.getInt("ID_FUNCIONARIO"));
-                obj.setCpfCliente(rs.getString("CPF"));
-                obj.setIdSap(rs.getInt("ID_SAPATO"));
-                obj.setData(rs.getString("DATA_MOV"));
-                obj.setStatus(rs.getString("STATUS"));
-                lista.add(obj);
+                Movimentacao movimentacao = new Movimentacao();
+                Cliente clienteBd = new Cliente();
+                Sapato sapatoBd = new Sapato();
+                movimentacao.setIdFun(rs.getInt("ID_FUNCIONARIO"));
+                movimentacao.setCpfCliente(rs.getString("CPF"));
+                clienteBd.setNome(rs.getString("NOME"));
+                movimentacao.setCliente(clienteBd);
+                sapatoBd.setNome(rs.getString("NOME_PRODUTO"));
+                movimentacao.setSapato(sapatoBd);
+                sapatoBd.setNumero(rs.getInt("NUMERO"));
+                movimentacao.setSapato(sapatoBd);
+                movimentacao.setStatus(rs.getString("STATUS"));
+                lista.add(movimentacao);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro de SQL" + e.getMessage());
         }
         return lista;
     }
-    
-    
-    
+
 }

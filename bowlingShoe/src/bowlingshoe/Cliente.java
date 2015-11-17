@@ -18,6 +18,9 @@ public class Cliente {
     private String cpf;
     private String rg;
     
+    public Cliente(){
+        
+    }
     
     public Cliente (String nome, String email, String cpf, String rg, String telefone, int idade){
         this.nome = nome;
