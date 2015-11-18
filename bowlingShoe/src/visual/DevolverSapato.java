@@ -26,10 +26,12 @@ public class DevolverSapato extends javax.swing.JDialog {
     public void atualizaTabela() {
         MovimentacaoDAO dao = new MovimentacaoDAO();
         String cpf = cpfCliente.getText();
-        Cliente cliente = new Cliente();
-        cliente.setCpf(cpf);
+        String data = dataMov.getText();
+        ItemDevolucao item = new ItemDevolucao();
+        item.setCpfCliente(cpf);
+        item.setDataRetirada(data);
         listObjetos.clear();
-        listObjetos.addAll(dao.getListaItensRetirados(cliente));
+        listObjetos.addAll(dao.getListaItensRetirados(item));
         int linha = listObjetos.size() - 1;
         if (linha >= 0) {
             tbItens.setRowSelectionInterval(linha, linha);
@@ -166,6 +168,11 @@ public class DevolverSapato extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        dataMov.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataMovActionPerformed(evt);
+            }
+        });
 
         btValidar.setText("VALIDAR DADOS");
         btValidar.addActionListener(new java.awt.event.ActionListener() {
@@ -249,23 +256,29 @@ public class DevolverSapato extends javax.swing.JDialog {
 
     private void btDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDevolverActionPerformed
         SapatoDAO daoSapato = new SapatoDAO();
+        ItemDevolucao devolucao = new ItemDevolucao();
         Sapato sapato = new Sapato();
 
         int linha = tbItens.getSelectedRow();
         int coluna = tbItens.getSelectedColumn();
 
-        if (coluna != 0) {
+        if (coluna != 3) {
             JOptionPane.showMessageDialog(null, "Selecione o ID do item");
         } else {
-
+            String cpf = cpfCliente.getText();
+            String data = dataMov.getText();
+            String funcionario = idFun.getText();
             Object id = tbItens.getValueAt(linha, coluna);
             int idItem = Integer.parseInt(id.toString());
+            int iDFuncionario = Integer.parseInt(funcionario.toString());
             sapato.setId(idItem);
-            daoSapato.alterarSapatoR(sapato);
-            MovimentacaoDAO daoMovimentacao = new MovimentacaoDAO();
+            daoSapato.alterarSapatoD(sapato);
+            
             atualizaTabela();
-            //Movimentacao movimentacao = new Movimentacao(IDFuncionario, cpf, idItem, data, "RETIRADA");
-            //daoMovimentacao.inserirMovimentacao(movimentacao);
+            
+            MovimentacaoDAO daoMovimentacao = new MovimentacaoDAO();
+            Movimentacao movimentacao = new Movimentacao(iDFuncionario, cpf, idItem, data, "DEVOLUÇÃO");
+            daoMovimentacao.inserirMovimentacao(movimentacao);
         }
 
     }//GEN-LAST:event_btDevolverActionPerformed
@@ -363,6 +376,10 @@ public class DevolverSapato extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_btValidarActionPerformed
+
+    private void dataMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataMovActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dataMovActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -41,20 +41,20 @@ public class MovimentacaoDAO {
         return false;
     }
 
-    public List<ItemDevolucao> getListaItensRetirados(Cliente cliente) {
+    public List<ItemDevolucao> getListaItensRetirados(ItemDevolucao devolucao) {
         String sql = "SELECT M.ID_MOVIMENTACAO, M.ID_FUNCIONARIO, C.NOME, M.CPF, S.ID_SAPATO, S.NOME_PRODUTO, S.NUMERO, M.STATUS\n"
                 + "FROM MOVIMENTACAO M\n"
                 + "JOIN CLIENTE C ON M.CPF = C.CPF\n"
                 + "JOIN SAPATOS S ON M.ID_SAPATO = S.ID_SAPATO\n"
                 + "JOIN FUNCIONARIO F ON M.ID_FUNCIONARIO = F.ID_FUNCIONARIO\n"
-                + "WHERE M.CPF = ?";
+                + "WHERE M.CPF = ? AND M.DATA_MOV = ?";
         List<ItemDevolucao> lista = new ArrayList<>();
         try {
             PreparedStatement p = DBconexao.getPreparedStatement(sql);
-            p.setString(1, cliente.getCpf());
+            p.setString(1, devolucao.getCpfCliente());
+            p.setString(1, devolucao.getDataRetirada());
             ResultSet rs = p.executeQuery();
             while (rs.next()) {
-                ItemDevolucao devolucao = new ItemDevolucao();
                 devolucao.setIdFuncionario(rs.getInt("ID_FUNCIONARIO"));
                 devolucao.setNomeCliente(rs.getString("NOME"));
                 devolucao.setCpfCliente(rs.getString("CPF"));

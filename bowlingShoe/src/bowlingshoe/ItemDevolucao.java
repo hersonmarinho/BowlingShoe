@@ -17,15 +17,17 @@ public class ItemDevolucao {
     private int idSapato;
     private String nomeProduto;
     private int numeroProduto;
+    private String dataRetirada;
     private String statusMovimentacao;
     
-    public ItemDevolucao(int idFuncionario, String nomeCliente, String cpfCliente, int idSapato, String nomeProduto, int numeroProduto, String statusMovimentacao){
+    public ItemDevolucao(int idFuncionario, String nomeCliente, String cpfCliente, int idSapato, String nomeProduto, int numeroProduto, String dataRetirada, String statusMovimentacao){
         this.idFuncionario = idFuncionario;
         this.nomeCliente = nomeCliente;
         this.cpfCliente = cpfCliente;
         this.idSapato = idSapato;
         this.nomeProduto = nomeProduto;
         this.numeroProduto = numeroProduto;
+        this.dataRetirada = dataRetirada;
         this.statusMovimentacao = statusMovimentacao;
     }
         
@@ -87,6 +89,14 @@ public class ItemDevolucao {
 
     public void setStatusMovimentacao(String statusMovimentacao) {
         this.statusMovimentacao = statusMovimentacao;
+    }
+
+    public String getDataRetirada() {
+        return dataRetirada;
+    }
+
+    public void setDataRetirada(String dataRetirada) {
+        this.dataRetirada = dataRetirada;
     }
     
 }
