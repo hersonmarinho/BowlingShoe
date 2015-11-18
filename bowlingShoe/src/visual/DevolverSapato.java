@@ -10,6 +10,7 @@ import bowlingshoe.ItemDevolucao;
 import bowlingshoe.Movimentacao;
 import bowlingshoe.MovimentacaoDAO;
 import bowlingshoe.Sapato;
+import bowlingshoe.SapatoDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -56,7 +57,7 @@ public class DevolverSapato extends javax.swing.JDialog {
         painelItens = new javax.swing.JPanel();
         painelComItens = new javax.swing.JScrollPane();
         tbItens = new javax.swing.JTable();
-        btRetirar = new javax.swing.JButton();
+        btDevolver = new javax.swing.JButton();
         infos = new javax.swing.JLabel();
         dadoCliente = new javax.swing.JLabel();
         cpfCliente = new javax.swing.JFormattedTextField();
@@ -118,10 +119,10 @@ public class DevolverSapato extends javax.swing.JDialog {
 
         guiaItens.addTab("Itens", painelItens);
 
-        btRetirar.setText("DEVOLVER");
-        btRetirar.addActionListener(new java.awt.event.ActionListener() {
+        btDevolver.setText("DEVOLVER");
+        btDevolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRetirarActionPerformed(evt);
+                btDevolverActionPerformed(evt);
             }
         });
 
@@ -206,7 +207,7 @@ public class DevolverSapato extends javax.swing.JDialog {
                         .addGap(50, 50, 50)
                         .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btRetirar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54))))
         );
         layout.setVerticalGroup(
@@ -215,11 +216,12 @@ public class DevolverSapato extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cpfCliente)
-                            .addComponent(dadoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dataMov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dMov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dataMov, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dMov, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cpfCliente)
+                                .addComponent(dadoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(idFuncionario)
@@ -235,7 +237,7 @@ public class DevolverSapato extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btRetirar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btDevolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -245,10 +247,28 @@ public class DevolverSapato extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRetirarActionPerformed
+    private void btDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDevolverActionPerformed
+        SapatoDAO daoSapato = new SapatoDAO();
+        Sapato sapato = new Sapato();
 
+        int linha = tbItens.getSelectedRow();
+        int coluna = tbItens.getSelectedColumn();
 
-    }//GEN-LAST:event_btRetirarActionPerformed
+        if (coluna != 0) {
+            JOptionPane.showMessageDialog(null, "Selecione o ID do item");
+        } else {
+
+            Object id = tbItens.getValueAt(linha, coluna);
+            int idItem = Integer.parseInt(id.toString());
+            sapato.setId(idItem);
+            daoSapato.alterarSapatoR(sapato);
+            MovimentacaoDAO daoMovimentacao = new MovimentacaoDAO();
+            atualizaTabela();
+            //Movimentacao movimentacao = new Movimentacao(IDFuncionario, cpf, idItem, data, "RETIRADA");
+            //daoMovimentacao.inserirMovimentacao(movimentacao);
+        }
+
+    }//GEN-LAST:event_btDevolverActionPerformed
 
     private void cpfClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfClienteActionPerformed
 
@@ -335,8 +355,6 @@ public class DevolverSapato extends javax.swing.JDialog {
 
                 if (divisaoCPF == a10 && segundaDivisaoCPF == a11) {
                     atualizaTabela();
-                    
-                    
                 } else {
                     JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos (CPF*).\n Digite novamente por favor!");
                 }
@@ -349,7 +367,7 @@ public class DevolverSapato extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
-    private javax.swing.JButton btRetirar;
+    private javax.swing.JButton btDevolver;
     private javax.swing.JButton btValidar;
     private javax.swing.JFormattedTextField cpfCliente;
     private javax.swing.JLabel dMov;

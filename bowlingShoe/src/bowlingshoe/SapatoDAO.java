@@ -40,6 +40,29 @@ public class SapatoDAO {
         return lista;
     }
 
+    public List<Sapato> getListaTodos() {
+        String sql = "SELECT ID_SAPATO, NOME_PRODUTO, NUMERO, STATUS\n"
+                + "FROM SAPATOS\n"
+                + "WHERE STATUS NOT LIKE 'E%'\n"
+                + "ORDER BY NUMERO ASC";
+        List<Sapato> lista = new ArrayList<>();
+        try {
+            PreparedStatement p = DBconexao.getPreparedStatement(sql);
+            ResultSet rs = p.executeQuery();
+            while (rs.next()) {
+                Sapato obj = new Sapato();
+                obj.setId(rs.getInt("ID_SAPATO"));
+                obj.setNome(rs.getString("NOME_PRODUTO"));
+                obj.setNumero(rs.getInt("NUMERO"));
+                obj.setStatus(rs.getString("STATUS"));
+                lista.add(obj);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro de SQL" + e.getMessage());
+        }
+        return lista;
+    }
+
     public boolean inserirSapato(Sapato sapato) {
         String sql = "INSERT INTO SAPATOS (NOME_PRODUTO, NUMERO, STATUS) VALUES (?,?,?)";
         try {
@@ -48,10 +71,10 @@ public class SapatoDAO {
             p.setInt(2, sapato.getNumero());
             p.setString(3, sapato.getStatus());
             if (p.executeUpdate() > 0) {
-                JOptionPane.showMessageDialog(null, "Item incluido com sucesso");
+                JOptionPane.showMessageDialog(null, "Item incluido com sucesso!");
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "Item não incluido com sucesso");
+                JOptionPane.showMessageDialog(null, "Item não incluido com sucesso!");
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
@@ -65,10 +88,10 @@ public class SapatoDAO {
             PreparedStatement p = DBconexao.getPreparedStatement(sql);
             p.setInt(1, sapato.getId());
             if (p.executeUpdate() > 0) {
-                JOptionPane.showMessageDialog(null, "Item retirado com sucesso");
+                JOptionPane.showMessageDialog(null, "Item retirado com sucesso!");
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "Item não retirado com sucesso");
+                JOptionPane.showMessageDialog(null, "Item não retirado com sucesso!");
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
@@ -82,10 +105,10 @@ public class SapatoDAO {
             PreparedStatement p = DBconexao.getPreparedStatement(sql);
             p.setInt(1, sapato.getId());
             if (p.executeUpdate() > 0) {
-                JOptionPane.showMessageDialog(null, "Item devolvido com sucesso");
+                JOptionPane.showMessageDialog(null, "Item devolvido com sucesso!");
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "Item não devolvido com sucesso");
+                JOptionPane.showMessageDialog(null, "Item não devolvido com sucesso!");
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
@@ -93,6 +116,20 @@ public class SapatoDAO {
         return false;
     }
 
-    
-
+    public boolean desativarSapato(Sapato sapato) {
+        String sql = "UPDATE SAPATOS SET STATUS = 'E' WHERE ID_SAPATO = ?;";
+        try {
+            PreparedStatement p = DBconexao.getPreparedStatement(sql);
+            p.setInt(1, sapato.getId());
+            if (p.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "Item desativado com sucesso!");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Item não desativado com sucesso!");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
+        }
+        return false;
+    }
 }
