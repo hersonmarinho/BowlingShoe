@@ -189,6 +189,7 @@ public class CdSapato extends javax.swing.JDialog {
             }
             if (quantidadeSapatos > 50) {
                 JOptionPane.showMessageDialog(null, "Não é possível adicionar esse item, o estoque chegou em sua quantidade máxima!!");
+                
             }
             if (quantidadeSapatos <= 50 && quantidadeSapatos != 40) {
                 daoSapato.inserirSapato(sapato);
