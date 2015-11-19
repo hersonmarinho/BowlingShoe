@@ -142,11 +142,11 @@ public class CdSapato extends javax.swing.JDialog {
                 .addComponent(numeroItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(numItem)
-                .addGap(34, 34, 34)
+                .addGap(32, 32, 32)
                 .addComponent(statusItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(checkDisponivel)
-                .addGap(24, 24, 24)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btIncluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -181,6 +181,7 @@ public class CdSapato extends javax.swing.JDialog {
                         + "Deseja continuar?", "Selecione uma opção!", JOptionPane.YES_NO_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE, null, opcao, opcao[1]);
                 if (n == 0) {
+                    daoSapato.inserirSapato(sapato);
                     CdSapato.this.setVisible(false);
                 } else {
                     daoSapato.inserirSapato(sapato);
@@ -189,10 +190,11 @@ public class CdSapato extends javax.swing.JDialog {
             }
             if (quantidadeSapatos > 50) {
                 JOptionPane.showMessageDialog(null, "Não é possível adicionar esse item, o estoque chegou em sua quantidade máxima!!");
-                
+                CdSapato.this.setVisible(false);
             }
             if (quantidadeSapatos <= 50 && quantidadeSapatos != 40) {
                 daoSapato.inserirSapato(sapato);
+                CdSapato.this.setVisible(false);
             }
         }
 
