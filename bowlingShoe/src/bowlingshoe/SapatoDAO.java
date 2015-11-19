@@ -100,7 +100,7 @@ public class SapatoDAO {
     }
 
     public boolean alterarSapatoD(Sapato sapato) {
-        String sql = "UPTADE SAPATOS SET STATUS = 'D' WHERE ID_SAPATO = ?";
+        String sql = "UPDATE SAPATOS SET STATUS = 'D' WHERE ID_SAPATO = ?";
         try {
             PreparedStatement p = DBconexao.getPreparedStatement(sql);
             p.setInt(1, sapato.getId());

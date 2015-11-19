@@ -5,6 +5,10 @@
  */
 package visual;
 
+import bowlingshoe.Cliente;
+import bowlingshoe.ClienteDAO;
+import bowlingshoe.Funcionario;
+import bowlingshoe.FuncionarioDAO;
 import bowlingshoe.Movimentacao;
 import bowlingshoe.MovimentacaoDAO;
 import bowlingshoe.Sapato;
@@ -286,22 +290,33 @@ public class RetirarSapato extends javax.swing.JDialog {
 
                 if (divisaoCPF == a10 && segundaDivisaoCPF == a11) {
                     SapatoDAO daoSapato = new SapatoDAO();
-                    Sapato sapato = new Sapato();
+                    ClienteDAO daoCliente = new ClienteDAO();
+                    FuncionarioDAO daoFuncionario = new FuncionarioDAO();
+                    Cliente cliente = new Cliente();
+                    cliente.setCpf(cpf);
+                    Funcionario funcionario = new Funcionario();
+                    funcionario.setIdFuncionario(IDFuncionario);
+                    if (daoCliente.pesquisarCliente(cliente) && daoFuncionario.pesquisarFuncionario(funcionario)) {
+                        Sapato sapato = new Sapato();
 
-                    int linha = tbItens.getSelectedRow();
-                    int coluna = tbItens.getSelectedColumn();
+                        int linha = tbItens.getSelectedRow();
+                        int coluna = tbItens.getSelectedColumn();
 
-                    if (coluna != 0) {
-                        JOptionPane.showMessageDialog(null, "Selecione o ID do item");
-                    } else {
-                        Object id = tbItens.getValueAt(linha, coluna);
-                        int idItem = Integer.parseInt(id.toString());
-                        sapato.setId(idItem);
-                        daoSapato.alterarSapatoR(sapato);
-                        MovimentacaoDAO daoMovimentacao = new MovimentacaoDAO();
-                        atualizaTabela();
-                        Movimentacao movimentacao = new Movimentacao(IDFuncionario, cpf, idItem, data, "RETIRADA");
-                        daoMovimentacao.inserirMovimentacao(movimentacao);
+                        if (coluna != 0) {
+                            JOptionPane.showMessageDialog(null, "Selecione o ID do item");
+                        } else {
+                            Object id = tbItens.getValueAt(linha, coluna);
+                            int idItem = Integer.parseInt(id.toString());
+                            sapato.setId(idItem);
+                            daoSapato.alterarSapatoR(sapato);
+                            MovimentacaoDAO daoMovimentacao = new MovimentacaoDAO();
+                            atualizaTabela();
+                            Movimentacao movimentacao = new Movimentacao(IDFuncionario, cpf, idItem, data, "RETIRADA");
+                            daoMovimentacao.inserirMovimentacao(movimentacao);
+                        }
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Cliente ou funcionário não cadastrados!");
                     }
 
                 } else {

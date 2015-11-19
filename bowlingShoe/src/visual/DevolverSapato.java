@@ -6,6 +6,9 @@
 package visual;
 
 import bowlingshoe.Cliente;
+import bowlingshoe.ClienteDAO;
+import bowlingshoe.Funcionario;
+import bowlingshoe.FuncionarioDAO;
 import bowlingshoe.ItemDevolucao;
 import bowlingshoe.Movimentacao;
 import bowlingshoe.MovimentacaoDAO;
@@ -273,12 +276,13 @@ public class DevolverSapato extends javax.swing.JDialog {
             int iDFuncionario = Integer.parseInt(funcionario.toString());
             sapato.setId(idItem);
             daoSapato.alterarSapatoD(sapato);
-            
+
             atualizaTabela();
-            
+
             MovimentacaoDAO daoMovimentacao = new MovimentacaoDAO();
             Movimentacao movimentacao = new Movimentacao(iDFuncionario, cpf, idItem, data, "DEVOLUÇÃO");
-            daoMovimentacao.inserirMovimentacao(movimentacao);
+            daoMovimentacao.alterarMovimentacao(movimentacao);
+            atualizaTabela();
         }
 
     }//GEN-LAST:event_btDevolverActionPerformed
@@ -367,7 +371,18 @@ public class DevolverSapato extends javax.swing.JDialog {
                 }
 
                 if (divisaoCPF == a10 && segundaDivisaoCPF == a11) {
-                    atualizaTabela();
+                    SapatoDAO daoSapato = new SapatoDAO();
+                    ClienteDAO daoCliente = new ClienteDAO();
+                    FuncionarioDAO daoFuncionario = new FuncionarioDAO();
+                    Cliente cliente = new Cliente();
+                    cliente.setCpf(cpf);
+                    Funcionario funcionario = new Funcionario();
+                    funcionario.setIdFuncionario(IDFuncionario);
+                    if (daoCliente.pesquisarCliente(cliente) && daoFuncionario.pesquisarFuncionario(funcionario)) {
+                        atualizaTabela();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Cliente ou funcionário não cadastrados!");
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos (CPF*).\n Digite novamente por favor!");
                 }

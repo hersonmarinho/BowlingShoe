@@ -11,6 +11,7 @@ package bowlingshoe;
  */
 public class ItemDevolucao {
     
+    private int idMovimentacao;
     private int idFuncionario;
     private String nomeCliente;
     private String cpfCliente;
@@ -20,7 +21,8 @@ public class ItemDevolucao {
     private String dataRetirada;
     private String statusMovimentacao;
     
-    public ItemDevolucao(int idFuncionario, String nomeCliente, String cpfCliente, int idSapato, String nomeProduto, int numeroProduto, String dataRetirada, String statusMovimentacao){
+    public ItemDevolucao(int idMovimentacao, int idFuncionario, String nomeCliente, String cpfCliente, int idSapato, String nomeProduto, int numeroProduto, String dataRetirada, String statusMovimentacao){
+        this.idMovimentacao = idMovimentacao;
         this.idFuncionario = idFuncionario;
         this.nomeCliente = nomeCliente;
         this.cpfCliente = cpfCliente;
@@ -97,6 +99,14 @@ public class ItemDevolucao {
 
     public void setDataRetirada(String dataRetirada) {
         this.dataRetirada = dataRetirada;
+    }
+
+    public int getIdMovimentacao() {
+        return idMovimentacao;
+    }
+
+    public void setIdMovimentacao(int idMovimentacao) {
+        this.idMovimentacao = idMovimentacao;
     }
     
 }

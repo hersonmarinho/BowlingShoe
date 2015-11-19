@@ -29,9 +29,11 @@ public class ClienteDAO {
             p.setString(6, cliente.getRg());
             if (p.executeUpdate() > 0) {
                 JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+                p.close();
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Cadastro não realizado!");
+                p.close();
             }
         } catch (SQLException e){
             String erro = e.getMessage();
@@ -44,6 +46,34 @@ public class ClienteDAO {
         }
         return false;
     }
+    
+    public boolean pesquisarCliente(Cliente cliente) {
+        String sql = "SELECT * FROM CLIENTE WHERE CPF = ?";
+        try {
+            PreparedStatement p = DBconexao.getPreparedStatement(sql);
+            p.setString(1, cliente.getCpf());
+            ResultSet rs = p.executeQuery();
+            int verificarDado = 0;
+            while (rs.next()) {
+                verificarDado++;
+                return true;
+            }
+        } catch (SQLException e){
+            String erro = e.getMessage();
+            if (erro.equalsIgnoreCase("[SQLITE_CONSTRAINT] Abort due to constraint violation (UNIQUE constraint failed:CLIENTE.CPF)")){
+                erro = "CPF JÁ CADASTRADO";
+                JOptionPane.showMessageDialog(null, "Erro de SQL: " + erro);
+            }
+            else
+                JOptionPane.showMessageDialog(null, "Erro de SQL: " + erro);
+        }
+        return false;
+    }
+    
+    
+    
+    
+    
     
     
     

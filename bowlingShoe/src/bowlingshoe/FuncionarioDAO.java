@@ -5,26 +5,33 @@
  */
 package bowlingshoe;
 
+import dbconexao.DBconexao;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Herson
  */
 public class FuncionarioDAO {
-    
-    public boolean validarFuncionario(){
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+    public boolean pesquisarFuncionario(Funcionario funcionario) {
+        String sql = "SELECT * FROM FUNCIONARIO WHERE ID_FUNCIONARIO = ?";
+        try {
+            PreparedStatement p = DBconexao.getPreparedStatement(sql);
+            p.setInt(1, funcionario.getIdFuncionario());
+            ResultSet rs = p.executeQuery();
+            int verificarDado = 0;
+            while (rs.next()) {
+                verificarDado++;
+                return true;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
+        }
         return false;
     }
-    
-    
-    
+
 }

@@ -47,27 +47,48 @@ public class MovimentacaoDAO {
                 + "JOIN CLIENTE C ON M.CPF = C.CPF\n"
                 + "JOIN SAPATOS S ON M.ID_SAPATO = S.ID_SAPATO\n"
                 + "JOIN FUNCIONARIO F ON M.ID_FUNCIONARIO = F.ID_FUNCIONARIO\n"
-                + "WHERE M.CPF = ? AND M.DATA_MOV = ?";
+                + "WHERE M.CPF = ? AND M.DATA_MOV = ? AND M.STATUS = 'RETIRADA'";
         List<ItemDevolucao> lista = new ArrayList<>();
         try {
             PreparedStatement p = DBconexao.getPreparedStatement(sql);
             p.setString(1, devolucao.getCpfCliente());
-            p.setString(1, devolucao.getDataRetirada());
+            p.setString(2, devolucao.getDataRetirada());
             ResultSet rs = p.executeQuery();
             while (rs.next()) {
-                devolucao.setIdFuncionario(rs.getInt("ID_FUNCIONARIO"));
-                devolucao.setNomeCliente(rs.getString("NOME"));
-                devolucao.setCpfCliente(rs.getString("CPF"));
-                devolucao.setIdSapato(rs.getInt("ID_SAPATO"));
-                devolucao.setNomeProduto(rs.getString("NOME_PRODUTO"));
-                devolucao.setNumeroProduto(rs.getInt("NUMERO"));
-                devolucao.setStatusMovimentacao(rs.getString("STATUS"));
-                lista.add(devolucao);
+                ItemDevolucao item = new ItemDevolucao();
+                item.setIdFuncionario(rs.getInt("ID_FUNCIONARIO"));
+                item.setNomeCliente(rs.getString("NOME"));
+                item.setCpfCliente(rs.getString("CPF"));
+                item.setIdSapato(rs.getInt("ID_SAPATO"));
+                item.setNomeProduto(rs.getString("NOME_PRODUTO"));
+                item.setNumeroProduto(rs.getInt("NUMERO"));
+                item.setStatusMovimentacao(rs.getString("STATUS"));
+                lista.add(item);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro de SQL" + e.getMessage());
         }
         return lista;
     }
+    
+    public boolean alterarMovimentacao(Movimentacao movimentacao) {
+        String sql = "UPDATE MOVIMENTACAO SET STATUS = 'DEVOLUÇÃO' WHERE ID_SAPATO = ?";
+        try {
+            PreparedStatement p = DBconexao.getPreparedStatement(sql);
+            p.setInt(1, movimentacao.getIdSap());
+            if (p.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "Movimentação realizada com sucesso!");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Movimentação não realizada com sucesso!");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
+        }
+        return false;
+    }
+    
+    
+    
 
 }

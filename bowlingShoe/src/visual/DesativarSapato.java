@@ -5,6 +5,8 @@
  */
 package visual;
 
+import bowlingshoe.Funcionario;
+import bowlingshoe.FuncionarioDAO;
 import bowlingshoe.MovimentacaoDAO;
 import bowlingshoe.Sapato;
 import bowlingshoe.SapatoDAO;
@@ -17,9 +19,10 @@ import javax.swing.JOptionPane;
  */
 public class DesativarSapato extends javax.swing.JDialog {
 
-    SapatoDAO dao = new SapatoDAO();
+    
 
     public void atualizaTabela() {
+        SapatoDAO dao = new SapatoDAO();
         listObjetos.clear();
         listObjetos.addAll(dao.getListaTodos());
         int linha = listObjetos.size() - 1;
@@ -127,11 +130,11 @@ public class DesativarSapato extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(idFun, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(idFuncionario))
+                    .addComponent(idFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(guiaSapato, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -157,22 +160,27 @@ public class DesativarSapato extends javax.swing.JDialog {
         if (IDFuncionario == 0) {
             JOptionPane.showMessageDialog(null, "Insira o ID do Funcionário!");
         } else {
+            Funcionario funcionario = new Funcionario();
+            funcionario.setIdFuncionario(IDFuncionario);
+            FuncionarioDAO daoFuncionario = new FuncionarioDAO();
+            if (daoFuncionario.pesquisarFuncionario(funcionario)) {
+                SapatoDAO daoSapato = new SapatoDAO();
+                Sapato sapato = new Sapato();
 
-            SapatoDAO daoSapato = new SapatoDAO();
-            Sapato sapato = new Sapato();
+                int linha = tbItens.getSelectedRow();
+                int coluna = tbItens.getSelectedColumn();
 
-            int linha = tbItens.getSelectedRow();
-            int coluna = tbItens.getSelectedColumn();
-
-            if (coluna != 0) {
-                JOptionPane.showMessageDialog(null, "Selecione o ID do item");
+                if (coluna != 0) {
+                    JOptionPane.showMessageDialog(null, "Selecione o ID do item");
+                } else {
+                    Object id = tbItens.getValueAt(linha, coluna);
+                    int idItem = Integer.parseInt(id.toString());
+                    sapato.setId(idItem);
+                    daoSapato.desativarSapato(sapato);
+                    atualizaTabela();
+                }
             } else {
-                Object id = tbItens.getValueAt(linha, coluna);
-                int idItem = Integer.parseInt(id.toString());
-                sapato.setId(idItem);
-                daoSapato.desativarSapato(sapato);
-                MovimentacaoDAO daoMovimentacao = new MovimentacaoDAO();
-                atualizaTabela();
+                  JOptionPane.showMessageDialog(null, "Funcionário não cadastrado!");
             }
         }
     }//GEN-LAST:event_btDesativarActionPerformed

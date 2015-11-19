@@ -57,7 +57,7 @@ public class CdCliente extends javax.swing.JDialog {
         idadeCliente = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Cadastro");
+        setTitle("Cadastro de Cliente");
         setResizable(false);
 
         emailCliente.addActionListener(new java.awt.event.ActionListener() {
