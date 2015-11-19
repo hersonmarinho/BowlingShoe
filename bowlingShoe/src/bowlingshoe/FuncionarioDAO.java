@@ -28,6 +28,7 @@ public class FuncionarioDAO {
                 verificarDado++;
                 return true;
             }
+            p.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
         }

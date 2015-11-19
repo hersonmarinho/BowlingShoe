@@ -88,7 +88,7 @@ public class tela1 extends javax.swing.JFrame {
         });
 
         btRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bowlingshoe/icons/Daily_Report.png"))); // NOI18N
-        btRelatorio.setText("RELATÓRIO DIA");
+        btRelatorio.setText("RELATÓRIO");
         btRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRelatorioActionPerformed(evt);

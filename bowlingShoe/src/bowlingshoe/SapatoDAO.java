@@ -34,6 +34,7 @@ public class SapatoDAO {
                 obj.setStatus(rs.getString("STATUS"));
                 lista.add(obj);
             }
+            p.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro de SQL" + e.getMessage());
         }
@@ -57,6 +58,7 @@ public class SapatoDAO {
                 obj.setStatus(rs.getString("STATUS"));
                 lista.add(obj);
             }
+            p.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro de SQL" + e.getMessage());
         }
@@ -76,6 +78,7 @@ public class SapatoDAO {
             } else {
                 JOptionPane.showMessageDialog(null, "Item não incluido com sucesso!");
             }
+            p.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
         }
@@ -93,6 +96,7 @@ public class SapatoDAO {
             } else {
                 JOptionPane.showMessageDialog(null, "Item não retirado com sucesso!");
             }
+            p.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
         }
@@ -110,6 +114,7 @@ public class SapatoDAO {
             } else {
                 JOptionPane.showMessageDialog(null, "Item não devolvido com sucesso!");
             }
+            p.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
         }
@@ -127,9 +132,26 @@ public class SapatoDAO {
             } else {
                 JOptionPane.showMessageDialog(null, "Item não desativado com sucesso!");
             }
+            p.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
         }
         return false;
+    }
+
+    public int contarItens() {
+        int quantidadeSapatos = 0;
+        String sql = "SELECT COUNT (ID_SAPATO) AS QTD_SAPATOS FROM SAPATOS\n"
+                + "    WHERE STATUS NOT LIKE 'E%'";
+        try {
+            PreparedStatement p = DBconexao.getPreparedStatement(sql);
+            ResultSet rs = p.executeQuery();
+            if(rs.next()){
+                return quantidadeSapatos = rs.getInt("QTD_SAPATOS");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
+        }
+        return quantidadeSapatos;
     }
 }

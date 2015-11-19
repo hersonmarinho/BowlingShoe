@@ -17,18 +17,17 @@ import javax.swing.JOptionPane;
  * @author Herson
  */
 public class CdSapato extends javax.swing.JDialog {
-    
+
     final CheckBoxTreeItem a = new CheckBoxTreeItem();
-    
-    
+
     public void itemStateChanged(ItemEvent e) {
-        
+
     }
-    
+
     public CdSapato(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
     }
 
     /**
@@ -173,10 +172,27 @@ public class CdSapato extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos.\n Digite novamente por favor!");
         } else {
             Sapato sapato = new Sapato(id, nome, tam, "D");
-            SapatoDAO dao = new SapatoDAO();
-            dao.inserirSapato(sapato);
-            this.setVisible(false);
-            
+            SapatoDAO daoSapato = new SapatoDAO();
+            int quantidadeSapatos = daoSapato.contarItens();
+            if (quantidadeSapatos == 40) {
+                Object[] opcao = {"SIM", "NÃO"};
+
+                int n = JOptionPane.showOptionDialog(this, "Faltam 10 itens para atingir a quantidade máxima do estoque.\n"
+                        + "Deseja continuar?", "Selecione uma opção!", JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null, opcao, opcao[1]);
+                if (n == 0) {
+                    CdSapato.this.setVisible(false);
+                } else {
+                    daoSapato.inserirSapato(sapato);
+                    this.setVisible(false);
+                }
+            }
+            if (quantidadeSapatos > 50) {
+                JOptionPane.showMessageDialog(null, "Não é possível adicionar esse item, o estoque chegou em sua quantidade máxima!!");
+            }
+            if (quantidadeSapatos <= 50 && quantidadeSapatos != 40) {
+                daoSapato.inserirSapato(sapato);
+            }
         }
 
 
@@ -202,7 +218,7 @@ public class CdSapato extends javax.swing.JDialog {
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void checkDisponivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkDisponivelActionPerformed
-        
+
     }//GEN-LAST:event_checkDisponivelActionPerformed
 
     /**

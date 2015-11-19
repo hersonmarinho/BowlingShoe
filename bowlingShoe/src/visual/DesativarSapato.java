@@ -19,8 +19,6 @@ import javax.swing.JOptionPane;
  */
 public class DesativarSapato extends javax.swing.JDialog {
 
-    
-
     public void atualizaTabela() {
         SapatoDAO dao = new SapatoDAO();
         listObjetos.clear();
@@ -164,23 +162,48 @@ public class DesativarSapato extends javax.swing.JDialog {
             funcionario.setIdFuncionario(IDFuncionario);
             FuncionarioDAO daoFuncionario = new FuncionarioDAO();
             if (daoFuncionario.pesquisarFuncionario(funcionario)) {
-                SapatoDAO daoSapato = new SapatoDAO();
                 Sapato sapato = new Sapato();
+                SapatoDAO daoSapato = new SapatoDAO();
+                int quantidadeSapatos = daoSapato.contarItens();
+                if (quantidadeSapatos == 10) {
+                    Object[] opcao = {"SIM", "NÃO"};
 
-                int linha = tbItens.getSelectedRow();
-                int coluna = tbItens.getSelectedColumn();
+                    int n = JOptionPane.showOptionDialog(this, "Faltam 10 itens para ZERAR o estoque.\n"
+                            + "Deseja continuar?", "Selecione uma opção!", JOptionPane.YES_NO_CANCEL_OPTION,
+                            JOptionPane.QUESTION_MESSAGE, null, opcao, opcao[1]);
+                    if (n == 0) {
+                        int linha = tbItens.getSelectedRow();
+                        int coluna = tbItens.getSelectedColumn();
 
-                if (coluna != 0) {
-                    JOptionPane.showMessageDialog(null, "Selecione o ID do item");
-                } else {
-                    Object id = tbItens.getValueAt(linha, coluna);
-                    int idItem = Integer.parseInt(id.toString());
-                    sapato.setId(idItem);
-                    daoSapato.desativarSapato(sapato);
-                    atualizaTabela();
+                        if (coluna != 0) {
+                            JOptionPane.showMessageDialog(null, "Selecione o ID do item");
+                        } else {
+                            Object id = tbItens.getValueAt(linha, coluna);
+                            int idItem = Integer.parseInt(id.toString());
+                            sapato.setId(idItem);
+                            daoSapato.desativarSapato(sapato);
+                            atualizaTabela();
+                        }
+                    } else {
+                        this.setVisible(false);
+                    }
+                }
+                if (quantidadeSapatos > 0 && quantidadeSapatos != 10) {
+                    int linha = tbItens.getSelectedRow();
+                    int coluna = tbItens.getSelectedColumn();
+
+                    if (coluna != 0) {
+                        JOptionPane.showMessageDialog(null, "Selecione o ID do item");
+                    } else {
+                        Object id = tbItens.getValueAt(linha, coluna);
+                        int idItem = Integer.parseInt(id.toString());
+                        sapato.setId(idItem);
+                        daoSapato.desativarSapato(sapato);
+                        atualizaTabela();
+                    }
                 }
             } else {
-                  JOptionPane.showMessageDialog(null, "Funcionário não cadastrado!");
+                JOptionPane.showMessageDialog(null, "Funcionário não cadastrado!");
             }
         }
     }//GEN-LAST:event_btDesativarActionPerformed

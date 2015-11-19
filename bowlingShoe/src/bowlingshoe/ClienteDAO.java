@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ClienteDAO {
-    
+
     public boolean inserirCliente(Cliente cliente) {
         String sql = "INSERT INTO CLIENTE (NOME, IDADE, EMAIL, TELEFONE, CPF, RG) VALUES (?,?,?,?,?,?)";
         try {
@@ -29,24 +29,22 @@ public class ClienteDAO {
             p.setString(6, cliente.getRg());
             if (p.executeUpdate() > 0) {
                 JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
-                p.close();
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Cadastro não realizado!");
-                p.close();
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             String erro = e.getMessage();
-            if (erro.equalsIgnoreCase("[SQLITE_CONSTRAINT] Abort due to constraint violation (UNIQUE constraint failed:CLIENTE.CPF)")){
+            if (erro.equalsIgnoreCase("[SQLITE_CONSTRAINT] Abort due to constraint violation (UNIQUE constraint failed:CLIENTE.CPF)")) {
                 erro = "CPF JÁ CADASTRADO";
                 JOptionPane.showMessageDialog(null, "Erro de SQL: " + erro);
-            }
-            else
+            } else {
                 JOptionPane.showMessageDialog(null, "Erro de SQL: " + erro);
+            }
         }
         return false;
     }
-    
+
     public boolean pesquisarCliente(Cliente cliente) {
         String sql = "SELECT * FROM CLIENTE WHERE CPF = ?";
         try {
@@ -58,24 +56,17 @@ public class ClienteDAO {
                 verificarDado++;
                 return true;
             }
-        } catch (SQLException e){
+            p.close();
+        } catch (SQLException e) {
             String erro = e.getMessage();
-            if (erro.equalsIgnoreCase("[SQLITE_CONSTRAINT] Abort due to constraint violation (UNIQUE constraint failed:CLIENTE.CPF)")){
+            if (erro.equalsIgnoreCase("[SQLITE_CONSTRAINT] Abort due to constraint violation (UNIQUE constraint failed:CLIENTE.CPF)")) {
                 erro = "CPF JÁ CADASTRADO";
                 JOptionPane.showMessageDialog(null, "Erro de SQL: " + erro);
-            }
-            else
+            } else {
                 JOptionPane.showMessageDialog(null, "Erro de SQL: " + erro);
+            }
         }
         return false;
     }
-    
-    
-    
-    
-    
-    
-    
-    
 
 }

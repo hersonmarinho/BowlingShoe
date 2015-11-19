@@ -35,6 +35,7 @@ public class MovimentacaoDAO {
             } else {
                 JOptionPane.showMessageDialog(null, "Movimentacão não realizada!");
             }
+            p.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
         }
@@ -65,12 +66,13 @@ public class MovimentacaoDAO {
                 item.setStatusMovimentacao(rs.getString("STATUS"));
                 lista.add(item);
             }
+            p.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro de SQL" + e.getMessage());
         }
         return lista;
     }
-    
+
     public boolean alterarMovimentacao(Movimentacao movimentacao) {
         String sql = "UPDATE MOVIMENTACAO SET STATUS = 'DEVOLUÇÃO' WHERE ID_SAPATO = ?";
         try {
@@ -82,13 +84,11 @@ public class MovimentacaoDAO {
             } else {
                 JOptionPane.showMessageDialog(null, "Movimentação não realizada com sucesso!");
             }
+            p.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
         }
         return false;
     }
-    
-    
-    
 
 }

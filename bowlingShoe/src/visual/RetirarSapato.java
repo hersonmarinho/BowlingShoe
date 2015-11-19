@@ -297,25 +297,53 @@ public class RetirarSapato extends javax.swing.JDialog {
                     Funcionario funcionario = new Funcionario();
                     funcionario.setIdFuncionario(IDFuncionario);
                     if (daoCliente.pesquisarCliente(cliente) && daoFuncionario.pesquisarFuncionario(funcionario)) {
+                        int quantidadeSapatos = daoSapato.contarItens();
                         Sapato sapato = new Sapato();
 
-                        int linha = tbItens.getSelectedRow();
-                        int coluna = tbItens.getSelectedColumn();
+                        if (quantidadeSapatos == 10) {
+                            Object[] opcao = {"SIM", "NÃO"};
 
-                        if (coluna != 0) {
-                            JOptionPane.showMessageDialog(null, "Selecione o ID do item");
-                        } else {
-                            Object id = tbItens.getValueAt(linha, coluna);
-                            int idItem = Integer.parseInt(id.toString());
-                            sapato.setId(idItem);
-                            daoSapato.alterarSapatoR(sapato);
-                            MovimentacaoDAO daoMovimentacao = new MovimentacaoDAO();
-                            atualizaTabela();
-                            Movimentacao movimentacao = new Movimentacao(IDFuncionario, cpf, idItem, data, "RETIRADA");
-                            daoMovimentacao.inserirMovimentacao(movimentacao);
+                            int n = JOptionPane.showOptionDialog(this, "Faltam 10 itens para ZERAR o estoque.\n"
+                                    + "Deseja continuar?", "Selecione uma opção!", JOptionPane.YES_NO_CANCEL_OPTION,
+                                    JOptionPane.QUESTION_MESSAGE, null, opcao, opcao[1]);
+                            if (n == 0) {
+                                int linha = tbItens.getSelectedRow();
+                                int coluna = tbItens.getSelectedColumn();
+
+                                if (coluna != 0) {
+                                    JOptionPane.showMessageDialog(null, "Selecione o ID do item");
+                                } else {
+                                    Object id = tbItens.getValueAt(linha, coluna);
+                                    int idItem = Integer.parseInt(id.toString());
+                                    sapato.setId(idItem);
+                                    daoSapato.alterarSapatoR(sapato);
+                                    MovimentacaoDAO daoMovimentacao = new MovimentacaoDAO();
+                                    atualizaTabela();
+                                    Movimentacao movimentacao = new Movimentacao(IDFuncionario, cpf, idItem, data, "RETIRADA");
+                                    daoMovimentacao.inserirMovimentacao(movimentacao);
+                                }
+                            } else {
+                                this.setVisible(false);
+                            }
                         }
-                    }
-                    else{
+                        if (quantidadeSapatos > 0 && quantidadeSapatos != 10) {
+                            int linha = tbItens.getSelectedRow();
+                            int coluna = tbItens.getSelectedColumn();
+
+                            if (coluna != 0) {
+                                JOptionPane.showMessageDialog(null, "Selecione o ID do item");
+                            } else {
+                                Object id = tbItens.getValueAt(linha, coluna);
+                                int idItem = Integer.parseInt(id.toString());
+                                sapato.setId(idItem);
+                                daoSapato.alterarSapatoR(sapato);
+                                MovimentacaoDAO daoMovimentacao = new MovimentacaoDAO();
+                                atualizaTabela();
+                                Movimentacao movimentacao = new Movimentacao(IDFuncionario, cpf, idItem, data, "RETIRADA");
+                                daoMovimentacao.inserirMovimentacao(movimentacao);
+                            }
+                        }
+                    } else {
                         JOptionPane.showMessageDialog(null, "Cliente ou funcionário não cadastrados!");
                     }
 
