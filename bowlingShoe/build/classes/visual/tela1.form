@@ -26,19 +26,19 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btCadastroCliente" pref="167" max="32767" attributes="0"/>
                   <Component id="btInserirSapato" max="32767" attributes="0"/>
-                  <Component id="btRetirada" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btCadastroCliente" pref="180" max="32767" attributes="0"/>
+                  <Component id="btRetirada" alignment="1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="btRelatorio" max="32767" attributes="0"/>
-                  <Component id="btExcluirSapato" alignment="0" pref="203" max="32767" attributes="0"/>
+                  <Component id="btExcluirSapato" max="32767" attributes="0"/>
                   <Component id="btDevolucao" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

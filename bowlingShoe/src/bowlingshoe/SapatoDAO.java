@@ -94,7 +94,7 @@ public class SapatoDAO {
                 JOptionPane.showMessageDialog(null, "Item retirado com sucesso!");
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "Item não retirado com sucesso!");
+                JOptionPane.showMessageDialog(null, "Item não retirado!");
             }
             p.close();
         } catch (SQLException e) {
@@ -112,7 +112,7 @@ public class SapatoDAO {
                 JOptionPane.showMessageDialog(null, "Item devolvido com sucesso!");
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "Item não devolvido com sucesso!");
+                JOptionPane.showMessageDialog(null, "Item não devolvido!");
             }
             p.close();
         } catch (SQLException e) {
@@ -130,7 +130,7 @@ public class SapatoDAO {
                 JOptionPane.showMessageDialog(null, "Item desativado com sucesso!");
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "Item não desativado com sucesso!");
+                JOptionPane.showMessageDialog(null, "Item não desativado!");
             }
             p.close();
         } catch (SQLException e) {

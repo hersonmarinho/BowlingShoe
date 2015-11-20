@@ -58,13 +58,7 @@ public class ClienteDAO {
             }
             p.close();
         } catch (SQLException e) {
-            String erro = e.getMessage();
-            if (erro.equalsIgnoreCase("[SQLITE_CONSTRAINT] Abort due to constraint violation (UNIQUE constraint failed:CLIENTE.CPF)")) {
-                erro = "CPF JÁ CADASTRADO";
-                JOptionPane.showMessageDialog(null, "Erro de SQL: " + erro);
-            } else {
-                JOptionPane.showMessageDialog(null, "Erro de SQL: " + erro);
-            }
+            JOptionPane.showMessageDialog(null, "Erro de SQL: " + e.getMessage());
         }
         return false;
     }

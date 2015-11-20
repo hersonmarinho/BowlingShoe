@@ -306,10 +306,15 @@ public class CdCliente extends javax.swing.JDialog {
                 }
 
                 if (divisaoCPF == a10 && segundaDivisaoCPF == a11) {
+                    ClienteDAO daoCliente = new ClienteDAO();
                     Cliente cliente = new Cliente(nome, email, cpf, rg, telefone, nasCliente);
-                    ClienteDAO dao = new ClienteDAO();
-                    dao.inserirCliente(cliente);
-                    this.setVisible(false);
+                    if (daoCliente.pesquisarCliente(cliente)) {
+                        JOptionPane.showMessageDialog(null, "Este cliente já está cadastrado no sistema!");
+                    } else {
+                        daoCliente.inserirCliente(cliente);
+                        this.setVisible(false);
+                    }
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Dados incorretos ou campos inválidos (CPF*).\n Digite novamente por favor!");
                 }

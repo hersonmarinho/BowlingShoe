@@ -30,7 +30,7 @@ public class MovimentacaoDAO {
             p.setString(4, movimentacao.getData());
             p.setString(5, movimentacao.getStatus());
             if (p.executeUpdate() > 0) {
-                JOptionPane.showMessageDialog(null, "Movimentação realizada!");
+                JOptionPane.showMessageDialog(null, "Movimentação realizada com sucesso!");
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Movimentacão não realizada!");
@@ -82,7 +82,7 @@ public class MovimentacaoDAO {
                 JOptionPane.showMessageDialog(null, "Movimentação realizada com sucesso!");
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "Movimentação não realizada com sucesso!");
+                JOptionPane.showMessageDialog(null, "Movimentação não realizada!");
             }
             p.close();
         } catch (SQLException e) {

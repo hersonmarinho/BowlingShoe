@@ -22,9 +22,10 @@ import javax.swing.JOptionPane;
  */
 public class RetirarSapato extends javax.swing.JDialog {
 
-    SapatoDAO dao = new SapatoDAO();
+    
 
     public void atualizaTabela() {
+        SapatoDAO dao = new SapatoDAO();
         listObjetos.clear();
         listObjetos.addAll(dao.getListaDisponiveis());
         int linha = listObjetos.size() - 1;
@@ -228,6 +229,8 @@ public class RetirarSapato extends javax.swing.JDialog {
         String cpf = cpfCliente.getText();
         String data = dataMov.getText();
         String idfuncionario = idFun.getText();
+        System.out.println(cpf);
+        System.out.println(data);
 
         if (idfuncionario.equals("")) {
             idfuncionario = "0";
