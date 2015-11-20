@@ -39,7 +39,7 @@ public class tela1 extends javax.swing.JFrame {
         btRelatorio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Menu");
+        setTitle("Sistema BownlingShoe");
         setResizable(false);
 
         btCadastroCliente.setFont(new java.awt.Font("Futura Md BT", 0, 11)); // NOI18N
